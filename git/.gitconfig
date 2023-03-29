@@ -1,0 +1,12 @@
+[user]
+	name = Trần Minh Huy
+	email = minhhuy9a3dt@gmail.com
+[core]
+	editor = vim
+	autocrlf = false
+[alias]
+	amend = commit --amend -a --no-edit
+	lgo = log --oneline
+	lgg = log --oneline --graph --decorate
+	br = branch
+	st = status
