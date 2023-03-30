@@ -27,10 +27,10 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 # go
-export GOROOT=/usr/local/go
-PATH=$PATH:/usr/local/go/bin
+#export GOROOT=$(which go)
+#PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
-PATH=$PATH:$GOPATH/bin
+#PATH=$PATH:$GOPATH/bin
 
 
 # fzf
