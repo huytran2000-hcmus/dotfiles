@@ -10,3 +10,4 @@
 	lgg = log --oneline --graph --decorate
 	br = branch
 	st = status
+	sw = switch
