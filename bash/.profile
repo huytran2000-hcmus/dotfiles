@@ -49,4 +49,4 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
 if [ -e /home/huy/.nix-profile/etc/profile.d/nix.sh ]; then . /home/huy/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 eval $(ssh-agent -s)
-ssh-add -t 10800 ~/.ssh/id_ed25519
+# ssh-add -t 10800 ~/.ssh/id_ed25519
