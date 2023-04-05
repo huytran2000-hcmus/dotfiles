@@ -1,5 +1,8 @@
 return {
     "akinsho/toggleterm.nvim",
+    keys = {
+        { [[<C-\>]] }
+    },
     opts = {
         open_mapping = [[<C-\>]],
         autochdir = false,
