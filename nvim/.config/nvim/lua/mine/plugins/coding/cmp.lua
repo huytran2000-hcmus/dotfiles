@@ -93,7 +93,7 @@ return {
                     if has_words_before() then
                         cmp.confirm({
                             select = true,
-                            behavior = cmp.ConfirmBehavior.Insert,
+                            behavior = cmp.ConfirmBehavior.Replace,
                         })
                     else
                         fallback()
