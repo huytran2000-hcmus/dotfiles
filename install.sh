@@ -32,6 +32,7 @@ stow -d ~/.dotfiles -t ~ git
 stow -d ~/.dotfiles -t ~ nvim
 stow -d ~/.dotfiles -t ~ bash
 stow -d ~/.dotfiles -t ~ fzf
+stow -d ~/.dotfiles -t ~ vim
 
 . ~/.profile
 
