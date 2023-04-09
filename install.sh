@@ -17,7 +17,8 @@ nix-env -iA \
     nixpkgs.wget \
     nixpkgs.gcc \
     nixpkgs.gnumake \
-    nixpkgs.direnv
+    nixpkgs.direnv \
+    nixpkgs.tldr
 
 [ ! -d ~/.setup_backup ] && mkdir ~/.setup_backup && mv ~/.bashrc ~/.profile ~/.setup_backup
 
