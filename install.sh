@@ -1,5 +1,5 @@
 # install nix
-curl -L https://nixos.org/nix/install | sh -s -- --nodaemon
+curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
 
 nix-env -iA \
     nixpkgs.git \
