@@ -129,3 +129,5 @@ export JAVA_HOME=$HOME/.jbang/currentjdk
 
 export VISUAL=vim
 export EDITOR="$VISUAL"
+
+eval "$(direnv hook bash)"

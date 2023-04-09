@@ -8,6 +8,8 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+if [ -e /home/huy/.nix-profile/etc/profile.d/nix.sh ]; then . /home/huy/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
@@ -45,8 +47,6 @@ export FZF_CTRL_T_OPTS="--preview 'head -n 15 {}'"
 
 export FZF_ALT_C_COMMAND="fd --type d --color=never --hidden"
 export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
-
-if [ -e /home/huy/.nix-profile/etc/profile.d/nix.sh ]; then . /home/huy/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 eval $(ssh-agent -s)
 # ssh-add -t 10800 ~/.ssh/id_ed25519
