@@ -47,6 +47,3 @@ export FZF_CTRL_T_OPTS="--preview 'head -n 15 {}'"
 
 export FZF_ALT_C_COMMAND="fd --type d --color=never --hidden"
 export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
-
-eval $(ssh-agent -s)
-# ssh-add -t 10800 ~/.ssh/id_ed25519
