@@ -130,10 +130,10 @@ function M.setup(opts)
         pattern = "VeryLazy",
         callback = function()
             local prefix = PREFIX .. "config."
+            require(prefix .. "func")
             require(prefix .. "autocmd")
             require(prefix .. "keymap")
             require(prefix .. "cmd")
-            require(prefix .. "func")
         end
     })
 end

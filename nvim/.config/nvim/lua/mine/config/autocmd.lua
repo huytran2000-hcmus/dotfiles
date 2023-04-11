@@ -18,9 +18,6 @@ AUTOCMD("BufWinEnter", {
 })
 
 AUTOCMD({ "BufNewFile", "BufReadPost" }, {
-    callback = function()
-        local get_root = require(PREFIX .. "utils.path").get_root
-        vim.cmd.lcd(get_root())
-    end,
+    callback = CDProjectRoot,
     desc = "Set cwd to current project root"
 })
