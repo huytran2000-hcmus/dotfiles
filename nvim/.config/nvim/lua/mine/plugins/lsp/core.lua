@@ -92,7 +92,8 @@ return {
                 -- "shfmt",
                 -- "flake8",
                 "gofumpt",
-                "golangci-lint"
+                "golangci-lint",
+                "delve"
             },
             setting = {}
         },
