@@ -113,6 +113,11 @@ return {
                 desc = "Fuzzy find the string under cursor"
             },
             {
+                "<leader>fd",
+                function() require("telescope.builtin").diagnostics() end,
+                desc = "Fuzzy find old files"
+            },
+            {
                 "<leader>fo",
                 function() require("telescope.builtin").oldfiles() end,
                 desc = "Fuzzy find old files"
