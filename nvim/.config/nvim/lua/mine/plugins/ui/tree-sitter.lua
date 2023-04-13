@@ -41,7 +41,7 @@ return {
         end
     },
     opts = {
-        ensure_installed = { "go", "lua", "help", "vim" },
+        ensure_installed = { "go", "lua", "vimdoc", "vim" },
         sync_install = false,
         auto_install = false, -- Only enable if have treesiter CLI
         ignore_install = {},
