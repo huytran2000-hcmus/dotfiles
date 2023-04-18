@@ -19,14 +19,23 @@ nix-env -iA \
     nixpkgs.gnumake \
     nixpkgs.direnv \
     nixpkgs.tldr \
-    nixpkgs.jq
+    nixpkgs.jq \
+    nixpkgs.tree
 
 [ ! -d ~/.setup_backup ] && mkdir ~/.setup_backup && mv ~/.bashrc ~/.profile ~/.setup_backup
 
-[ ! -d ~/.fzf ] && git clone --filter=blob:none https://github.com/junegunn/fzf.git ~/.fzf && . ~/.fzf/install
+if [ ! -d ~/.fzf ] 
+then
+    git clone --filter=blob:none https://github.com/junegunn/fzf.git ~/.dotfiles/fzf/.fzf && . ~/.dotfiles/fzf/.fzf/install
+else
+    cd ~/.fzf
+    git pull
+    cd -
+fi
+~/.fzf/install
 
-[ ! -d ~/.local/share/fonts ] && mkdir -p ~/.local/share/fonts && wget -q -O /tmp/Hack.zip https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip && \
-    unzip -o -q /tmp/Hack.zip -d ~/.local/share/fonts/ && rm -rf /tmp/Hack.zip /tmp/Hack
+[ ! -d ~/.local/share/fonts ] && mkdir -p ~/.local/share/fonts && wget -q -O /tmp/Hack.zip https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip \
+    && unzip -o -q /tmp/Hack.zip -d ~/.local/share/fonts/ && rm -rf /tmp/Hack.zip /tmp/Hack
 
 fc-cache -f -v
 

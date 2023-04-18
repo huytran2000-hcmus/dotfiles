@@ -40,10 +40,10 @@ if [[ ! "$PATH" == */home/huy/.fzf/bin* ]]; then
   PATH="${PATH:+${PATH}:}/home/huy/.fzf/bin"
 fi
 
-export FZF_DEFAULT_CONFIG="fd --type f ---color=never --hidden --no-ignore"
+export FZF_DEFAULT_CONFIG="fd --type f --color auto --hidden --no-ignore"
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_CONFIG"
 export FZF_CTRL_T_OPTS="--preview 'head -n 15 {}'"
 
-export FZF_ALT_C_COMMAND="fd --type d --color=never --hidden"
+export FZF_ALT_C_COMMAND="fd --type d --color auto --hidden"
 export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
