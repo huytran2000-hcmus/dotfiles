@@ -50,17 +50,14 @@ return {
             priority = priority of the source
             max_item_count = maximum items for a source
             --]]
-            sources = cmp.config.sources({
-                    { name = "nvim_lsp",               keyword_length = 2, max_item_count = 10 },
-                    { name = "luasnip" },
-                    { name = "nvim_lua" },
-                    { name = "nvim_lsp_signature_help" },
-                },
-                {
-                    { name = "buffer", keyword_length = 3 },
-                    { name = "path" },
-                }
-            ),
+            sources = {
+                { name = "nvim_lsp",               keyword_length = 2, max_item_count = 10 },
+                { name = "luasnip" },
+                { name = "nvim_lua" },
+                { name = "nvim_lsp_signature_help" },
+                { name = "buffer",                 keyword_length = 3 },
+                { name = "path" },
+            },
             snippet = {
                 expand = function(args)
                     require("luasnip").lsp_expand(args.body)
