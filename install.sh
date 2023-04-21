@@ -26,7 +26,7 @@ nix-env -iA \
 
 if [ ! -d ~/.fzf ] 
 then
-    git clone --filter=blob:none https://github.com/junegunn/fzf.git ~/.dotfiles/fzf/.fzf && . ~/.dotfiles/fzf/.fzf/install
+    git clone --filter=blob:none https://github.com/junegunn/fzf.git ~/.fzf && . ~/.fzf/install
 else
     cd ~/.fzf
     git pull
