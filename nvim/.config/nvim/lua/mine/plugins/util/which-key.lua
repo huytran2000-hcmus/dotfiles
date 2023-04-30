@@ -7,15 +7,9 @@ return {
         vim.o.timeoutlen = 500
     end,
     opts = {
-        triggers_nowait = {
-            "`",
-            "'",
-            "g`",
-            "g'",
-            --'"',
-            --"<c-r>",
-            "z=",
-        },
+        plugins = {
+            registers = false,
+        }
     },
     config = function(_, opts)
         local wk = require("which-key")
