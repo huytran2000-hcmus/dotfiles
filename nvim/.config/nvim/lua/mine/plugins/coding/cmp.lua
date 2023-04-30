@@ -119,34 +119,35 @@ return {
     end,
     config = function(_, opts)
         local cmp = require("cmp")
+        local cmd_mappings = cmp.mapping.preset.cmdline({
+            ['<C-j>'] = {
+                c = function(fallback)
+                    if cmp.visible() then
+                        cmp.select_next_item()
+                    else
+                        fallback()
+                    end
+                end,
+            },
+            ['<C-k>'] = {
+                c = function(fallback)
+                    if cmp.visible() then
+                        cmp.select_prev_item()
+                    else
+                        fallback()
+                    end
+                end,
+            },
+        })
         cmp.setup(opts)
         cmp.setup.cmdline({ '/', '?' }, {
-            mapping = cmp.mapping.preset.cmdline(),
+            mapping = cmd_mappings,
             sources = {
                 { name = 'buffer', keyword_length = 3 }
             }
         })
         cmp.setup.cmdline(':', {
-            mapping = cmp.mapping.preset.cmdline({
-                ['<C-j>'] = {
-                    c = function(fallback)
-                        if cmp.visible() then
-                            cmp.select_next_item()
-                        else
-                            fallback()
-                        end
-                    end,
-                },
-                ['<C-k>'] = {
-                    c = function(fallback)
-                        if cmp.visible() then
-                            cmp.select_prev_item()
-                        else
-                            fallback()
-                        end
-                    end,
-                },
-            }),
+            mapping = cmd_mappings,
             sources = cmp.config.sources({ -- cmdline source will not show when path source is available
                 { name = 'path' }
             }, {

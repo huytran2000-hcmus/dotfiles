@@ -2,7 +2,13 @@ return {
     -- https://github.com/catppuccin/nvim
     "catppuccin/nvim",
     name = "catppuccin",
-    lazy = true,
+    init = function()
+        vim.api.nvim_create_autocmd("UIEnter", {
+            command = "colorscheme catppuccin"
+        })
+    end,
+    priority = 1000,
+    lazy = false,
     opts = {
         flavour = "mocha", -- latte, frappe, macchiato, mocha
         background = {
