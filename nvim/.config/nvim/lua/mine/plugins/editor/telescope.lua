@@ -129,7 +129,7 @@ return {
             },
             {
                 "<leader>fgb",
-                function() require("telescope.builtin").git_branches() end,
+                function() require("telescope.builtin").git_branches(require('telescope.themes').get_dropdown()) end,
                 desc = "Fuzzy checkout git branch"
             },
             {
