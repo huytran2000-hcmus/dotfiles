@@ -137,6 +137,11 @@ return {
                 function() require("telescope.builtin").git_status() end,
                 desc = "Fuzzy check git file status"
             },
+            {
+                "<leader>fgc",
+                function() require("telescope.builtin").git_commits() end,
+                desc = "Fuzzy checkout and reset git commits"
+            },
         },
         dependencies = {
             { "nvim-lua/plenary.nvim" },
