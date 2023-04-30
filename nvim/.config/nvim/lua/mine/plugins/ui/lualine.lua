@@ -73,10 +73,26 @@ return {
                 },
             },
             lualine_x = {
+                function()
+                    local navic = require("nvim-navic")
+                    local context = navic.get_location()
+                    if context ~= "" then
+                        return context
+                    end
+
+                    return ""
+                end
+
+            },
+            lualine_y = {},
+            lualine_z = { "progress" }
+        },
+        winbar = {
+            lualine_a = {
                 {
                     "buffers",
                     mode = 0,
-                    max_length = vim.o.columns * 2 / 3, -- Maximum width of buffers component,
+                    max_length = vim.o.columns * 3 / 4, -- Maximum width of buffers component,
                     symbols = {
                         modified = "[+]",               -- Text to show when the buffer is modified
                         alternate_file = "#",           -- Text to show to identify the alternate file
@@ -91,26 +107,11 @@ return {
                     -- },
                 }
             },
-            lualine_y = { "progress" },
-            lualine_z = { "location" }
-        },
-        winbar = {
-            lualine_a = {
-                function()
-                    local navic = require("nvim-navic")
-                    local context = navic.get_location()
-                    if context ~= "" then
-                        return context
-                    end
-
-                    return ""
-                end
-
-            },
             lualine_x = { "encoding", "fileformat", "filetype" },
             lualine_y = {
                 {
                     "filename",
+                    file_status = true,
                     newfile_status = true,
                 },
             },

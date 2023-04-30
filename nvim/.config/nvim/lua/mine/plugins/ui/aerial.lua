@@ -30,7 +30,8 @@ return {
             "Struct",
             "Constant",
             "Variable",
-            "Field"
+            "Field",
+            "Object",
         },
         highlight_closest = true,
         highlight_on_hover = true,
