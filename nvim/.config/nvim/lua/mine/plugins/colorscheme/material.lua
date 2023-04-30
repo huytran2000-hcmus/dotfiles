@@ -29,7 +29,7 @@ return {
             "telescope",
             "which-key",
             "nvim-web-devicons",
-            "gitsigns",
+            -- "gitsigns",
             -- "dashboard",
             -- "hop",
             -- "indent-blankline",

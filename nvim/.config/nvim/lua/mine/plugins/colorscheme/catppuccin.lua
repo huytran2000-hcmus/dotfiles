@@ -49,8 +49,14 @@ return {
             telescope = true,
             which_key = true,
             lsp_trouble = true,
-            notify = false,
-            mini = false,
+            navic = true,
+            aerial = true,
+            fidget = true,
+            mason = true,
+            treesitter = true,
+            which_key = true,
+            -- notify = false,
+            -- mini = false,
             -- For
             -- more
             -- plugins

@@ -11,7 +11,7 @@ return {
         {
             "SmiteshP/nvim-navic",
             config = function()
-                local icons = require(PREFIX .. "config").icons.navigate
+                local icons = require(PREFIX .. "config").icons.lsp_symbol
                 local navic = require("nvim-navic")
                 navic.setup {
                     icons = icons
@@ -54,9 +54,7 @@ return {
             "quickfix",
             "man",
             -- "gitsigns",
-            -- "aerial",
-            -- "chadtree",
-            -- "fern",
+            "aerial",
             -- "fugitive",
             -- "fzf",
             -- "mundo",
@@ -78,11 +76,11 @@ return {
                 {
                     "buffers",
                     mode = 0,
-                    x_length = vim.o.columns * 2 / 3, -- Maximum width of buffers component,
+                    max_length = vim.o.columns * 2 / 3, -- Maximum width of buffers component,
                     symbols = {
-                        modified = "[+]",             -- Text to show when the buffer is modified
-                        alternate_file = "#",         -- Text to show to identify the alternate file
-                        directory = "",            -- Text to show when the buffer is a directory
+                        modified = "[+]",               -- Text to show when the buffer is modified
+                        alternate_file = "#",           -- Text to show to identify the alternate file
+                        directory = "",              -- Text to show when the buffer is a directory
                     },
                     -- filetype_names = {
                     --     TelescopePrompt = 'Telescope',

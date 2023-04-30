@@ -109,7 +109,7 @@ return {
                 fields = { "menu", "abbr", "kind" },
                 format = function(entry, item)
                     local menu_icons = require(PREFIX .. "config").icons.menu
-                    local kind_icons = require(PREFIX .. "config").icons.kind
+                    local kind_icons = require(PREFIX .. "config").icons.completion_kind
                     item.kind = string.format('%s %s', kind_icons[item.kind], item.kind)
                     item.menu = menu_icons[entry.source.name]
                     return item
