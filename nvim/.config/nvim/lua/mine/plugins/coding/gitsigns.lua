@@ -72,7 +72,7 @@ return {
                 { desc = "Gitsigns: Blame current line" })
             NNOREMAP('<leader>tb', gs.toggle_current_line_blame, { desc = "Gitsigns: Toggle blame current line" })
             NNOREMAP('<leader>hd', gs.diffthis, { desc = "Gitsigns: Diff this blame" })
-            NNOREMAP('<leader>hD', function() gs.diffthis('~') end,
+            NNOREMAP('<leader>hD', function() gs.diffthis('@') end,
                 { desc = "Gitsigns: Diff blame against its parent commit" })
             NNOREMAP('<leader>td', gs.toggle_deleted, { desc = "Gitsigns: Toogle deleted" })
         end
