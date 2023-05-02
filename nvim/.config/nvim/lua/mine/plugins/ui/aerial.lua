@@ -8,8 +8,9 @@ return {
                 require('telescope').load_extension('aerial')
                 require("telescope").extensions.aerial.aerial()
             end,
-            desc = "Open Aerial "
-        }
+            desc = "Fuzzy find buffer structure"
+        },
+        { "<F12>", "<cmd>AerialToggle!<CR>", desc = "Toggle Aerial window" }
     },
     dependencies = {
         "nvim-treesitter/nvim-treesitter",

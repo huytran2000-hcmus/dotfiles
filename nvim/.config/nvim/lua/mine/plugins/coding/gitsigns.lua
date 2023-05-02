@@ -6,7 +6,7 @@ return {
             change       = { text = '~' },
             delete       = { text = '_', show_count = true },
             topdelete    = { text = '‾', show_count = true },
-            changedelete = { text = '~', show_count = true },
+            changedelete = { text = '󱣳', show_count = true },
             untracked    = { text = '┆' },
         },
         watch_gitdir            = {
