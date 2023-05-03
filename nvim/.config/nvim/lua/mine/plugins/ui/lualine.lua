@@ -41,6 +41,7 @@ return {
                     "NvimTree",
                     "toggleterm",
                     "alpha",
+                    "qf"
                 },
             },
             globalstatus = true,
