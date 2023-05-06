@@ -34,7 +34,9 @@ return {
         },
         {
             "windwp/nvim-autopairs",
-            opts = {}
+            opts = {
+                fast_wrap = {},
+            }
         }
     },
     opts = function()
