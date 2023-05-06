@@ -85,8 +85,13 @@ return {
                 end
 
             },
-            lualine_y = {},
-            lualine_z = { "progress" }
+            lualine_y = {
+                {
+                    "diff",
+                    symbols = { added = "+", modified = "~", remove = "-" }
+                }
+            },
+            lualine_z = { "%S" },
         },
         winbar = {
             lualine_a = {
@@ -109,18 +114,12 @@ return {
                 }
             },
             lualine_x = { "encoding", "fileformat", "filetype" },
-            lualine_y = {
+            lualine_z = {
                 {
                     "filename",
                     file_status = true,
                     newfile_status = true,
                 },
-            },
-            lualine_z = {
-                {
-                    "diff",
-                    symbols = { added = "+", modified = "~", remove = "-" }
-                }
             },
         },
         tabline = {
