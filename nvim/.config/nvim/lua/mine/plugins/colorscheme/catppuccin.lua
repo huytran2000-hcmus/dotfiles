@@ -30,7 +30,7 @@ return {
             comments = { "italic" },
             functions = { "bold" },
             conditionals = {},
-            -- keywords = { "italic" },
+            keywords = { "bold" },
             -- loops = {},
             -- strings = {},
             -- variables = {},
@@ -54,7 +54,6 @@ return {
             fidget = true,
             mason = true,
             treesitter = true,
-            which_key = true,
             -- notify = false,
             -- mini = false,
             -- For

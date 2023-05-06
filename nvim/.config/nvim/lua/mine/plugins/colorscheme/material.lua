@@ -16,7 +16,7 @@ return {
             comments = { italic = true },
             functions = { bold = true },
             -- strings = { --[[ bold = true ]] },
-            -- keywords = { italic = true },
+            keywords = { bold = true },
             -- variables = {},
             -- operators = {},
             -- types = {},

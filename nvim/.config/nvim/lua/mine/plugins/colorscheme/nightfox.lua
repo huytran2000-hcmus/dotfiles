@@ -16,6 +16,7 @@ return {
             styles = {
                 comments = "italic",
                 functions = "bold",
+                keywords = "bold"
             }
         }
     }

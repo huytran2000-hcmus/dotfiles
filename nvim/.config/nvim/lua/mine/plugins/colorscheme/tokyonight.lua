@@ -11,7 +11,7 @@ return {
         styles = {
             comments = { italic = true },
             functions = { bold = true },
-            -- keywords = { italic = true },
+            keywords = { bold = true },
             -- varibles = {},
             sidebars = "dark",
             floats = "dark",
