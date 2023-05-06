@@ -2,6 +2,7 @@ return {
     -- https://github.com/marko-cerovac/material.nvim
     "marko-cerovac/material.nvim",
     lazy = true,
+    priority = 1000,
     init = function()
         -- material
         -- -- darker | lighter | oceanic | palenight | deep ocean

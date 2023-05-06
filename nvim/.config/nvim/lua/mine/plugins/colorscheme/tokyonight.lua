@@ -2,6 +2,7 @@ return {
     -- https://github.com/folke/tokyonight.nvim
     "folke/tokyonight.nvim",
     lazy = true,
+    priority = 1000,
     opts = {
         style = "moon",
         light_style = "day",
