@@ -35,3 +35,9 @@ vim.opt.list = true
 
 vim.opt.cmdheight = 0
 vim.opt.showcmdloc = "statusline"
+
+vim.filetype.add({
+    extension = {
+        gohtml = "html",
+    }
+})
