@@ -4,7 +4,7 @@ return {
     priority = 1000,
     init = function()
         vim.api.nvim_create_autocmd("UIEnter", {
-            command = "colorscheme terafox"
+            command = "colorscheme nightfox"
         })
     end,
     opts = {
