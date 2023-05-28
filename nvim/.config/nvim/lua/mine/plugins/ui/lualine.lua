@@ -38,6 +38,8 @@ return {
                     "dapui_stacks",
                     "dapui_breakpoints",
                     "dapui_scopes",
+                    "dapui_console",
+                    "dap-repl",
                     "NvimTree",
                     "toggleterm",
                     "alpha",

@@ -12,7 +12,7 @@ return {
                 unusedparams = true,
                 composites = true,
                 bool = true,
-                fieldalignment = true,
+                -- fieldalignment = true,
                 nilness = true,
                 shadow = true,
                 structtag = true,

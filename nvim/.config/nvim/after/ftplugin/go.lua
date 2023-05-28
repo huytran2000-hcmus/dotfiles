@@ -10,3 +10,11 @@ AUTOCMD("BufWritePre", {
         })
     end
 })
+
+CMD("LoadLaunchJSON", function(opts)
+    P(opts)
+    require("dap.ext.vscode").load_launchjs(opts.args, { delve = { "go" } })
+end, {
+    nargs = 1,
+    desc = "Load launch.json for dap.nvim"
+})

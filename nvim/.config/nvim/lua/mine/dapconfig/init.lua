@@ -40,6 +40,12 @@ return {
             },
             {
                 type = "delve",
+                name = "Debug (go.mod)",
+                request = "launch",
+                program = "./${relativeFileDirname}"
+            },
+            {
+                type = "delve",
                 name = "Debug test", -- configuration for debugging test files
                 request = "launch",
                 mode = "test",
