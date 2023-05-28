@@ -8,9 +8,16 @@ return {
     settings = {
         gopls = {
             buildFlags = { "-tags=integration" },
-            -- analyses = {
-            --     unusedparams = true,
-            -- },
+            analyses = {
+                unusedparams = true,
+                composites = true,
+                bool = true,
+                fieldalignment = true,
+                nilness = true,
+                shadow = true,
+                structtag = true,
+                printf = true,
+            },
             staticcheck = true,
         },
     },

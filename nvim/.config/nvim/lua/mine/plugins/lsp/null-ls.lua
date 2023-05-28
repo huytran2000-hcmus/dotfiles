@@ -14,8 +14,10 @@ return {
                 -- builtins.formatting.prettier,
                 -- builtins.formatting.fixjson,
                 builtins.formatting.gofumpt,
-                builtins.hover.dictionary,
-                builtins.diagnostics.golangci_lint
+                builtins.formatting.goimports_reviser,
+                builtins.formatting.golines,
+                -- builtins.hover.dictionary,
+                builtins.diagnostics.golangci_lint,
                 -- builtins.formatting.write_good,
             },
             debounce = 250,
