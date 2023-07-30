@@ -35,6 +35,10 @@ CMD = function(name, command, opts)
     vim.api.nvim_create_user_command(name, command, opts)
 end
 
+function P(obj)
+    print(vim.inspect(obj))
+end
+
 local M = {}
 function M.has(plugin)
     return require("lazy.core.config").plugins[plugin] ~= nil

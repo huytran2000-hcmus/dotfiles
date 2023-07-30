@@ -55,7 +55,6 @@ return {
     config = function()
         local dap = require("dap")
         local cfg = require(PREFIX .. "dapconfig")
-        P(cfg)
         -- Adapters configuration
         for adpt, config in pairs(cfg.adapters) do
             dap.adapters[adpt] = config

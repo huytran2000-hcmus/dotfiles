@@ -17,7 +17,7 @@ AUTOCMD("BufWinEnter", {
     desc = "Choose a entry in help's TOC close it"
 })
 
-AUTOCMD({ "BufNewFile", "BufReadPost" }, {
-    callback = CDProjectRoot,
-    desc = "Set cwd to current project root"
-})
+-- AUTOCMD({ "BufNewFile", "BufReadPost" }, {
+--     callback = CDProjectRoot,
+--     desc = "Set cwd to current project root"
+-- })

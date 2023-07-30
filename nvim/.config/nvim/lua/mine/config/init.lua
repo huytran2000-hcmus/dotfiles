@@ -90,14 +90,15 @@ function M.setup(opts)
     -- this is needed to make sure options will be correctly applied
     -- after installing missing plugins
     require(PREFIX .. "config.option")
-    require("lazy").setup("mine.plugins", {
+    require("lazy").setup(PREFIX .. "plugins", {
         defaults = {
             lazy = false,
             -- version = nil
         },
-        spec = PREFIX .. "plugins",
+        spec = nil,
         install = {
             missing = true,
+            colorscheme = { "habamax" }
         },
         ui = {
             icons = {
