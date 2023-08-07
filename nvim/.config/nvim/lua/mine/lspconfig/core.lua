@@ -7,7 +7,13 @@ return {
         -- NNOREMAP("gD", vim.lsp.buf.declaration, vim.tbl_extend("force", bufopts, { desc = "Go to declaration" }))
         NNOREMAP("gt", vim.lsp.buf.type_definition, vim.tbl_extend("force", bufopts, { desc = "Go to type definition" }))
         NNOREMAP("gi", vim.lsp.buf.implementation, vim.tbl_extend("force", bufopts, { desc = "Go to implementations" }))
-        NNOREMAP("gr", vim.lsp.buf.references, vim.tbl_extend("force", bufopts, { desc = "Go to references" }))
+        NNOREMAP("gr", function()
+            if require(PREFIX .. "utils").has("telescope.nvim") then
+                require("telescope.builtin").lsp_references()
+                return
+            end
+            vim.lsp.buf.references()
+        end, vim.tbl_extend("force", bufopts, { desc = "Go to references" }))
 
         NNOREMAP('<space>sa', vim.lsp.buf.add_workspace_folder,
             vim.tbl_extend("force", bufopts, { desc = "Add workspace folder" }))

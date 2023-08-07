@@ -8,26 +8,12 @@ local opts = function()
                 "truncate",
                 shorten = { len = 1, exclude = { 1, -2, -1 } },
             },
-            preview = {
-                filesize_limit = 0.5
+            cache_picker = {
+                num_pickers = 5,
             },
-            -- buffer_previewer_maker = function(filepath, bufnr, opts)
-            --     local previewers = require("telescope.previewers")
-            --     opts = opts or {}
-            --     filepath = vim.fn.expand(filepath)
-
-            --     vim.loop.fs_stat(filepath, function(_, stat)
-            --         if not stat then
-            --             return
-            --         end
-
-            --         if stat.size > 100000 then
-            --             return
-            --         else
-            --             previewers.buffer_previewer_maker(filepath, bufnr, opts)
-            --         end
-            --     end)
-            -- end,
+            preview = {
+                filesize_limit = 0.5,
+            },
             mappings = {
                 i = {
                     ["<Cr>"] = actions.select_default,
@@ -35,6 +21,7 @@ local opts = function()
                     ["<C-/>"] = actions.which_key,
                     ["<C-j>"] = actions.move_selection_next,
                     ["<C-k>"] = actions.move_selection_previous,
+                    -- ["<C-h>"] = actions.moveper
                     ["<C-n>"] = actions.cycle_history_next,
                     ["<C-p>"] = actions.cycle_history_prev,
                     ["<C-d>"] = actions.preview_scrolling_down,
@@ -68,7 +55,21 @@ local opts = function()
                     ["<C-t>"] = actions.select_tab,
                 }
             }
-        }
+        },
+        pickers = {
+            find_files = {
+                find_command = { "fd", "-HI", "-E", ".git", "-E", "node_modules" },
+            },
+            buffers = {
+                sort_lastused = true,
+                sort_mru = true,
+            },
+            colorscheme = {
+                theme = "cursor",
+                enable_preview = true,
+            }
+        },
+
     }
 end
 
@@ -76,7 +77,7 @@ return {
     {
         -- https://github.com/nvim-telescope/telescope.nvim
         "nvim-telescope/telescope.nvim",
-        version = "0.1.x",
+        branch = "0.1.x",
         cmd = "Telescope",
         init = function()
             vim.cmd.cabbrev("tl", "Telescope")
@@ -142,15 +143,17 @@ return {
                 function() require("telescope.builtin").git_commits() end,
                 desc = "Fuzzy checkout and reset git commits"
             },
+            {
+                "<leader>fgh",
+                function() require("telescope.builtin").git_bcommits() end,
+                desc = "Fuzzy find git commits of current buffer"
+            }
         },
         dependencies = {
             { "nvim-lua/plenary.nvim" },
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
                 build = "make",
-                config = function()
-                    require("telescope").load_extension("fzf")
-                end
             },
             {
                 "nvim-tree/nvim-web-devicons"
