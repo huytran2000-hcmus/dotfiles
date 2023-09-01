@@ -32,7 +32,7 @@ fi
 #export GOROOT=$(which go)
 #PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
-PATH=$PATH:$GOPATH/bin
+PATH=$GOPATH/bin:$PATH
 
 
 # fzf
