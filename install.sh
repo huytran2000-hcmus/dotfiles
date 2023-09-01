@@ -45,6 +45,10 @@ stow -d ~/.dotfiles -t ~ nvim
 stow -d ~/.dotfiles -t ~ bash
 stow -d ~/.dotfiles -t ~ fzf
 stow -d ~/.dotfiles -t ~ vim
+stow -d ~/.dotfiles -t ~ psql
+
+stow -d ~/.dotfiles -t /var/lib/postgresql vim
+stow -d ~/.dotfiles -t /var/lib/postgresql psql
 
 . ~/.profile
 
