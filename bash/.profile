@@ -47,3 +47,6 @@ export FZF_CTRL_T_OPTS="--preview 'head -n 15 {}'"
 
 export FZF_ALT_C_COMMAND="fd --type d --color auto --hidden"
 export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
+
+# Java
+export JAVA_HOME=$(dirname $(dirname $(readlink -f /home/huy/.nix-profile/bin/java)))

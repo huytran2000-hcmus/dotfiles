@@ -20,7 +20,11 @@ nix-env -iA \
     nixpkgs.direnv \
     nixpkgs.tldr \
     nixpkgs.jq \
-    nixpkgs.tree
+    nixpkgs.tree \
+    nixpkgs.adoptopenjdk-bin \
+    nixpkgs.maven \
+    nixpkgs.mkcert \
+    nixpkgs.nss_latest
 
 [ ! -d ~/.setup_backup ] && mkdir ~/.setup_backup && mv ~/.bashrc ~/.profile ~/.setup_backup
 
