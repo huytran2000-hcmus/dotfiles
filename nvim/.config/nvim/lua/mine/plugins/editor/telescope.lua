@@ -69,7 +69,6 @@ local opts = function()
                 enable_preview = true,
             }
         },
-
     }
 end
 

@@ -40,3 +40,17 @@ CMD("CDRoot", CDProjectRoot, {
     nargs = 0,
     desc = "CD to project root"
 })
+
+CMD("LoadLaunchJSON", function(opts)
+    LoadLaunchJSON(opts.args)
+end, {
+    nargs = 1,
+    desc = "Load launch.json for dap.nvim"
+})
+
+CMD("LoadVSCodeLaunchJSON", function()
+    LoadLaunchJSON(".vscode/launch.json")
+end, {
+    nargs = 0,
+    desc = "Load .vscode/launch.json for dap.nvim"
+})
