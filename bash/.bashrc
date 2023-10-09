@@ -128,3 +128,5 @@ export EDITOR="$VISUAL"
 eval "$(direnv hook bash)"
 
 alias ssh-setup='eval $(ssh-agent -s) && ssh-add'
+
+source ~/.kubectl/completion.bash
