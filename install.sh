@@ -54,8 +54,11 @@ stow -d ~/.dotfiles -t ~ psql
 [ ! -d ~/.kubectl ] && mkdir ~/.kubectl
 stow -d ~/.dotfiles -t ~/.kubectl kubectl
 
-stow -d ~/.dotfiles -t /var/lib/postgresql vim
-stow -d ~/.dotfiles -t /var/lib/postgresql psql
+# sudo -s
+# apt install stow
+# stow -d ~/.dotfiles -t /var/lib/postgresql vim
+# stow -d ~/.dotfiles -t /var/lib/postgresql psql
+# exit
 
 . ~/.profile
 
