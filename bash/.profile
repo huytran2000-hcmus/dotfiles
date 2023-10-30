@@ -53,3 +53,5 @@ export JAVA_HOME=$(dirname $(dirname $(readlink -f /home/huy/.nix-profile/bin/ja
 
 # Linkerd
 export PATH=$HOME/.linkerd2/bin:$PATH
+
+export PATH=$HOME/.protobuf/bin/:$PATH
