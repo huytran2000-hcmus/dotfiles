@@ -50,3 +50,6 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
 
 # Java
 export JAVA_HOME=$(dirname $(dirname $(readlink -f /home/huy/.nix-profile/bin/java)))
+
+# Linkerd
+export PATH=$HOME/.linkerd2/bin:$PATH
