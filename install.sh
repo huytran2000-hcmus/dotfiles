@@ -39,8 +39,8 @@ else
 fi
 ~/.fzf/install
 
-mkdir -p ~/.local/share/fonts && wget -q -O /tmp/Hack.zip https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip \
-    && unzip -o -q /tmp/Hack.zip -d ~/.local/share/fonts/ && rm -rf /tmp/Hack.zip /tmp/Hack
+mkdir -p ~/.local/share/fonts && sudo wget -q -O /tmp/Hack.zip https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip \
+    && unzip -o -q /tmp/Hack.zip -d ~/.local/share/fonts/ && sudo rm -rf /tmp/Hack.zip /tmp/Hack
 
 fc-cache -f -v
 
