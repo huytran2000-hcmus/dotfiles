@@ -7,11 +7,11 @@ return {
     opts = function()
         local dashboard = require("alpha.themes.dashboard")
         dashboard.section.buttons.val = {
-            dashboard.button("e", "  New file", "<cmd>ene<CR>"),
+            dashboard.button("e", "  New file", "<cmd>ene<CR>"),
             dashboard.button("f", "  Find file", "<cmd>Telescope find_files<CR>"),
-            dashboard.button("o", "  Recent files", "<cmd>Telescope oldfiles<CR>"),
+            dashboard.button("o", "  Recent files", "<cmd>Telescope oldfiles<CR>"),
             dashboard.button("r", "  Load last session", "<cmd>:SessionManager load_last_session<CR>"),
-            dashboard.button("s", "  Restore Session", "<cmd>:SessionManager load_session<CR>"),
+            dashboard.button("s", "  Restore Session", "<cmd>:SessionManager load_session<CR>"),
             dashboard.button("l", "󰒲  Lazy", ":Lazy<CR>"),
             dashboard.button("q", "  Quit", ":qa<CR>"),
         }

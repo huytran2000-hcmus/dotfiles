@@ -1,5 +1,6 @@
-# install nix
+#. /home/huy/.nix-profile/etc/profile.d/nix.sh install nix
 curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
+. /home/huy/.nix-profile/etc/profile.d/nix.sh
 
 nix-env -iA \
     nixpkgs.git \
@@ -38,7 +39,7 @@ else
 fi
 ~/.fzf/install
 
-[ ! -d ~/.local/share/fonts ] && mkdir -p ~/.local/share/fonts && wget -q -O /tmp/Hack.zip https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip \
+mkdir -p ~/.local/share/fonts && wget -q -O /tmp/Hack.zip https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip \
     && unzip -o -q /tmp/Hack.zip -d ~/.local/share/fonts/ && rm -rf /tmp/Hack.zip /tmp/Hack
 
 fc-cache -f -v
@@ -47,7 +48,6 @@ fc-cache -f -v
 stow -d ~/.dotfiles -t ~ git
 stow -d ~/.dotfiles -t ~ nvim
 stow -d ~/.dotfiles -t ~ bash
-stow -d ~/.dotfiles -t ~ fzf
 stow -d ~/.dotfiles -t ~ vim
 stow -d ~/.dotfiles -t ~ psql
 
