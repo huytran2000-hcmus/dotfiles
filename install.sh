@@ -22,7 +22,7 @@ nix-env -iA \
     nixpkgs.tldr \
     nixpkgs.jq \
     nixpkgs.tree \
-    nixpkgs.adoptopenjdk-bin \
+    nixpkgs.adoptopenjdk-openj9-bin-11 \
     nixpkgs.maven \
     nixpkgs.mkcert \
     nixpkgs.nss_latest
