@@ -21,7 +21,7 @@ return {
         },
     },
     adapters = {
-        delve = {
+        go = {
             type = 'server',
             port = '${port}',
             executable = {
@@ -33,19 +33,19 @@ return {
     debugees = {
         go = {
             {
-                type = "delve",
+                type = "go",
                 name = "Debug",
                 request = "launch",
                 program = "${file}"
             },
             {
-                type = "delve",
+                type = "go",
                 name = "Debug (go.mod)",
                 request = "launch",
                 program = "./${relativeFileDirname}"
             },
             {
-                type = "delve",
+                type = "go",
                 name = "Debug test", -- configuration for debugging test files
                 request = "launch",
                 mode = "test",
@@ -53,7 +53,7 @@ return {
             },
             -- works with go.mod packages and sub packages
             {
-                type = "delve",
+                type = "go",
                 name = "Debug test (go.mod)",
                 request = "launch",
                 mode = "test",
