@@ -71,5 +71,6 @@
         "/home/huy/.config/nvim/after",
         "/home/huy/.local/state/nvim/lazy/readme",
         "/home/huy/.config/nvim/lua"
-    ]
+    ],
+    "workspace.checkThirdParty": false
 }
