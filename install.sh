@@ -25,7 +25,8 @@ nix-env -iA \
     nixpkgs.adoptopenjdk-openj9-bin-11 \
     nixpkgs.maven \
     nixpkgs.mkcert \
-    nixpkgs.nss_latest
+    nixpkgs.nss_latest \
+    nixpkgs.nodejs_21
 
 [ ! -d ~/.setup_backup ] && mkdir ~/.setup_backup && mv ~/.bashrc ~/.profile ~/.setup_backup
 
