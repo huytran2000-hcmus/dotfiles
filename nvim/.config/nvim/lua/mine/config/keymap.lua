@@ -1,6 +1,6 @@
 -- Better up and down
-NNOREMAP("j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
-NNOREMAP("k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
+-- NNOREMAP("j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
+-- NNOREMAP("k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 
 -- Move between window
 NNOREMAP("<C-h>", "<C-w>h", { desc = "Go to left window" })
