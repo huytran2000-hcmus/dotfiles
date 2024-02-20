@@ -12,9 +12,9 @@ git clone \<repo url\>
 git clone \<repo url\> \<new directory name\>  
 git clone --branch \<branch\> \<repo url\>  
 git clone --branch \<branch\> --single-branch \<repo url\> _(not tracking other remote branch)_  
-git clone --depth=\<depth of commit\> \<repo url\>
+git clone --depth=\<depth of commit\> \<repo url\>  
 
-### Get specific folders
+# Get specific folders
 
 mkdir \<dir\>  
 cd \<dir\>  
@@ -23,7 +23,16 @@ git remote add origin \<repo url\>
 git config core.sparsecheckout true  
 echo \<dir1\>/ \>\> .git/info/sparse-checkout  
 echo \<dir2\>/ \>\> .git/info/sparse-checkout  
-git pull origin \<remote branch\>
+git pull origin \<remote branch\>  
+  
+*or*  
+  
+git clone --no-checkout \<repo url\>  
+cd \<dir\>
+git sparse-checkout set --cone
+git checkout main
+git sparse-checkout set \<dir1\>/
+git sparse-checkout set \<dir2\>/
 
 # Config
 
