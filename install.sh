@@ -2,6 +2,13 @@
 curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
 . /home/huy/.nix-profile/etc/profile.d/nix.sh
 
+. ~/.nix-profile/etc/profile.d/nix.sh
+stow -d ~/.dotfiles -t ~ git
+stow -d ~/.dotfiles -t ~ nvim
+stow -d ~/.dotfiles -t ~ bash
+stow -d ~/.dotfiles -t ~ vim
+stow -d ~/.dotfiles -t ~ psql
+
 nix-env -iA \
     nixpkgs.git \
     nixpkgs.stow \
@@ -44,13 +51,6 @@ mkdir -p ~/.local/share/fonts && sudo wget -q -O /tmp/Hack.zip https://github.co
     && unzip -o -q /tmp/Hack.zip -d ~/.local/share/fonts/ && sudo rm -rf /tmp/Hack.zip /tmp/Hack
 
 fc-cache -f -v
-
-. ~/.nix-profile/etc/profile.d/nix.sh
-stow -d ~/.dotfiles -t ~ git
-stow -d ~/.dotfiles -t ~ nvim
-stow -d ~/.dotfiles -t ~ bash
-stow -d ~/.dotfiles -t ~ vim
-stow -d ~/.dotfiles -t ~ psql
 
 [ ! -d ~/.kubectl ] && mkdir ~/.kubectl
 stow -d ~/.dotfiles -t ~/.kubectl kubectl
