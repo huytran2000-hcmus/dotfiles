@@ -30,7 +30,7 @@ fi
 
 # go
 #export GOROOT=$(which go)
-#PATH=$PATH:/usr/local/go/bin
+PATH=/usr/local/go/bin:$PATH
 export GOPATH=$HOME/go
 PATH=$GOPATH/bin:$PATH
 
