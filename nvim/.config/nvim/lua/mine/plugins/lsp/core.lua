@@ -89,7 +89,7 @@ return {
                 -- "shfmt",
                 -- "flake8",
                 "gofumpt",
-                "goimports-reviser",
+                "goimports",
                 "golines",
                 "golangci-lint",
                 "delve"

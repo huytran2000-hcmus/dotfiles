@@ -14,7 +14,7 @@ return {
                 -- builtins.formatting.prettier,
                 -- builtins.formatting.fixjson,
                 builtins.formatting.gofumpt,
-                builtins.formatting.goimports_reviser,
+                builtins.formatting.goimports,
                 -- builtins.formatting.golines,
                 -- builtins.hover.dictionary,
                 builtins.diagnostics.golangci_lint,
