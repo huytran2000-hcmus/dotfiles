@@ -53,7 +53,7 @@ return {
             max_item_count = maximum items for a source
             --]]
             sources = {
-                { name = "nvim_lsp",               keyword_length = 2, max_item_count = 10 },
+                { name = "nvim_lsp",               keyword_length = 3, max_item_count = 10 },
                 { name = "luasnip" },
                 { name = "nvim_lua" },
                 { name = "nvim_lsp_signature_help" },
