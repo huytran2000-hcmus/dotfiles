@@ -8,6 +8,7 @@ NNOREMAP("<C-l>", "<C-w>l", { desc = "Go to right window" })
 NNOREMAP("<C-k>", "<C-w>k", { desc = "Go to upper window" })
 NNOREMAP("<C-j>", "<C-w>j", { desc = "Go to lower window" })
 NNOREMAP("<Leader>ww", "<C-w>w", { desc = "Go to other window" })
+NNOREMAP("<Leader>wp", "<C-w>p", { desc = "Go to previous windows" })
 NNOREMAP("<Leader>wd", "<C-w>c", { desc = "Close current window" })
 NNOREMAP("<Leader>wo", "<C-w>o", { desc = "Close other windows" })
 
