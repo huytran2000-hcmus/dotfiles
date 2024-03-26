@@ -13,7 +13,8 @@ return {
             sources = {
                 -- builtins.formatting.prettier,
                 -- builtins.formatting.fixjson,
-                builtins.formatting.gofumpt,
+                -- builtins.formatting.gofumpt,
+                builtins.formatting.gofmt,
                 builtins.formatting.goimports,
                 -- builtins.formatting.golines,
                 -- builtins.hover.dictionary,
