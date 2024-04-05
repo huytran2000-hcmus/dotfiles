@@ -5,7 +5,6 @@ vim.cmd("syntax on")
 vim.cmd [[set path+=~/.config/nvim/**]]
 vim.cmd [[set path^=**]]
 
-vim.opt.mouse = nil
 vim.opt.clipboard:append("unnamedplus")
 
 vim.opt.number = true
