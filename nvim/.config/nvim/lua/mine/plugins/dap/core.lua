@@ -83,5 +83,6 @@ return {
         dap.listeners.before.event_exited["dapui_config"] = function()
             dapui.close()
         end
+        LoadLaunchJSON(".vscode/launch.json")
     end,
 }

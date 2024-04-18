@@ -39,13 +39,10 @@ function P(obj)
     print(vim.inspect(obj))
 end
 
-local M = {}
-function M.has(plugin)
+function Has(plugin)
     return require("lazy.core.config").plugins[plugin] ~= nil
 end
 
-function M.notify(msg)
+function Notify(msg)
     vim.notify(msg, vim.log.levels.INFO)
 end
-
-return M

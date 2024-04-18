@@ -55,3 +55,5 @@ export JAVA_HOME=$(dirname $(dirname $(readlink -f /home/huy/.nix-profile/bin/ja
 export PATH=$HOME/.linkerd2/bin:$PATH
 
 export PATH=$HOME/.protobuf/bin/:$PATH
+
+eval $(ssh-agent -s) && ssh-add && ssh-add ~/.ssh/finan.me_id

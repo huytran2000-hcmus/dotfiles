@@ -8,6 +8,7 @@ return {
     opts = function()
         local opts = require("hardtime.config").config
         table.insert(opts["disabled_filetypes"], "dbui")
+        opts["disable_mouse"] = false
 
         return opts
     end,

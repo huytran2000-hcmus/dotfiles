@@ -14,3 +14,5 @@
 	sw = switch
 [credential]
     helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
+[url "git@code.finan.cc:"]
+	insteadOf = https://code.finan.cc/
