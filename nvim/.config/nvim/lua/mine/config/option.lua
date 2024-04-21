@@ -16,8 +16,6 @@ vim.opt.expandtab = true
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 
-vim.opt.autoindent = true
-
 vim.opt.incsearch = true
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true
@@ -36,6 +34,8 @@ vim.opt.cmdheight = 0
 vim.opt.showcmdloc = "statusline"
 
 vim.opt.showmode = false
+
+vim.opt.autowriteall = true
 
 vim.filetype.add({
     extension = {
