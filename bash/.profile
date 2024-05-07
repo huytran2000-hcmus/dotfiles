@@ -56,4 +56,4 @@ export PATH=$HOME/.linkerd2/bin:$PATH
 
 export PATH=$HOME/.protobuf/bin/:$PATH
 
-eval $(ssh-agent -s) && ssh-add && ssh-add ~/.ssh/finan.me_id
+eval $(ssh-agent -s) && ssh-add && (ssh-add ~/.ssh/finan.me_id 2> /dev/null)
