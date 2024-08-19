@@ -17,7 +17,7 @@ return {
     dependencies = {
         "rcarriga/nvim-dap-ui",
         dependencies = {
-            "nvim-neotest/nvim-nio"
+            "nvim-neotest/nvim-nio",
         },
         opts = {
             controls = {
@@ -83,6 +83,6 @@ return {
         dap.listeners.before.event_exited["dapui_config"] = function()
             dapui.close()
         end
-        LoadLaunchJSON(".vscode/launch.json")
+        -- LoadLaunchJSON(".vscode/launch.json")
     end,
 }

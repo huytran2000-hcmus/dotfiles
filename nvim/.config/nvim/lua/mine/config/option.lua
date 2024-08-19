@@ -43,6 +43,10 @@ vim.filetype.add({
     }
 })
 
+vim.opt.undofile = true
+-- vim.opt.undolevels = 1000
+vim.opt.shada = "!,'100,f1,<100,s50,h"
+
 vim.g.clipboard = {
     name = 'WslClipboard',
     copy = {

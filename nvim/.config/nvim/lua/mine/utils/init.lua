@@ -20,7 +20,7 @@ VNOREMAP = function(lhs, rhs, opts)
 end
 
 AUGROUP = function(name)
-    vim.api.nvim_create_augroup(name, { clear = true })
+    return vim.api.nvim_create_augroup(name, { clear = false })
 end
 
 AUTOCMD = function(event, opts)
@@ -43,6 +43,6 @@ function Has(plugin)
     return require("lazy.core.config").plugins[plugin] ~= nil
 end
 
-function Notify(msg)
+Notify = function (msg)
     vim.notify(msg, vim.log.levels.INFO)
 end

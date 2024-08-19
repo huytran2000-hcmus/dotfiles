@@ -72,7 +72,7 @@ M.icons = {
 }
 
 
-function M.setup(opts)
+function M.setup(_)
     local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
     if not vim.loop.fs_stat(lazypath) then
         vim.fn.system({
@@ -135,6 +135,7 @@ function M.setup(opts)
             require(prefix .. "autocmd")
             require(prefix .. "keymap")
             require(prefix .. "cmd")
+            require(prefix .. "diagnostic")
         end
     })
 end

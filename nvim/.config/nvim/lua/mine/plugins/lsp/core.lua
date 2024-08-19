@@ -22,25 +22,24 @@ return {
         },
         config = function()
             local cfg = require(PREFIX .. "lspconfig")
-            for name, text in pairs(require(PREFIX .. "config").icons.diagnostic) do
-                vim.fn.sign_define(name, {
-                    texthl = name,
-                    text = text,
-                    numhl = name
-                })
-            end
-            vim.diagnostic.config(cfg.diagnostic)
-
             local servers = cfg.servers
-            local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+            local capabilities = vim.tbl_deep_extend(
+                "force",
+                vim.lsp.protocol.make_client_capabilities(),
+                require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+            )
             local core_on_attach = require(PREFIX .. "lspconfig.core").on_attach
-            local format_on_attach = require(PREFIX .. "lspconfig.format").on_attach
+            local format_on_attach = require(PREFIX .. "lspconfig.autoformat").on_attach
+            local inlay_hint_on_attach = require(PREFIX .. "lspconfig.inlay_hint").on_attach
+            local codelens_on_attach = require(PREFIX .. "lspconfig.codelens").on_attach
             local setup = function(server)
                 local server_opts = servers[server] or {}
                 server_opts = vim.tbl_deep_extend("force", {
                     on_attach = function(client, bufnr)
                         core_on_attach(client, bufnr)
                         format_on_attach(client, bufnr)
+                        inlay_hint_on_attach(client, bufnr)
+                        codelens_on_attach(client, bufnr)
                     end,
                     capabilities = vim.deepcopy(capabilities)
                 }, server_opts)
@@ -57,13 +56,6 @@ return {
 
                 require("lspconfig")[server].setup(server_opts)
             end
-
-            -- Temperal fix
-            -- local mappings = require("mason-lspconfig.mappings.server")
-            -- if not mappings.lspconfig_to_package.lua_ls then
-            --     mappings.lspconfig_to_package.lua_ls = "lua-language-server"
-            --     mappings.package_to_lspconfig["lua-language-server"] = "lua_ls"
-            -- end
 
             local mlsp = require("mason-lspconfig")
             local available_server = mlsp.get_available_servers()
@@ -82,37 +74,22 @@ return {
     },
     {
         "williamboman/mason.nvim",
-        cmd = "Mason",
         opts = {
-            ensure_installed = {
-                -- "stylua",
-                -- "shfmt",
-                -- "flake8",
-                "gofumpt",
-                "goimports",
-                "golines",
-                "golangci-lint",
-                "delve"
-            },
-            setting = {}
+            ensure_installed = {}, -- This is needed for append to
         },
         ---@param opts MasonSettings | {ensure_installed: string[]}
         config = function(_, opts)
             require("mason").setup(opts)
-            local register = require("mason-registry")
+            local registry = require("mason-registry")
             local ensure_installed = function()
-                for _, tool in ipairs(opts.ensure_installed) do
-                    local p = register.get_package(tool)
-                    if not p:is_installed() then
+                for _, pkg in ipairs(opts.ensure_installed) do
+                    if not registry.is_installed(pkg) then
+                        local p = registry.get_package(pkg)
                         p:install()
                     end
                 end
             end
-            if register.refresh then
-                register.refresh(ensure_installed)
-            else
-                ensure_installed()
-            end
+            registry.refresh(ensure_installed)
         end,
     },
     {

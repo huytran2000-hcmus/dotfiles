@@ -25,8 +25,6 @@ VNOREMAP("U", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
 -- Buffer
 NNOREMAP("]b", "<cmd>bnext<CR>", { desc = "Next buffer" })
 NNOREMAP("[b", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
-NNOREMAP("<leader>bb", "<C-w>o", { desc = "Close all other buffer" })
-
 -- Move between tab
 NNOREMAP("]t", "<cmd>tabnext<CR>", { desc = "Next tab" })
 NNOREMAP("[t", "<cmd>tabprevious<CR>", { desc = "Previous tab" })

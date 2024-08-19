@@ -1,2 +1,2 @@
 # dotfiles
-My development enviroment dotfiles.
+My development environment dotfiles.

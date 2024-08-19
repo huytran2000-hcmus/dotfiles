@@ -93,7 +93,7 @@ return {
                     symbols = { added = "+", modified = "~", remove = "-" }
                 }
             },
-            lualine_z = { "%S" },
+            lualine_z = { "searchcount", "%S" },
         },
         winbar = {
             lualine_a = {
@@ -102,9 +102,9 @@ return {
                     mode = 0,
                     max_length = vim.o.columns * 3 / 4, -- Maximum width of buffers component,
                     symbols = {
-                        modified = "[+]",               -- Text to show when the buffer is modified
-                        alternate_file = "#",           -- Text to show to identify the alternate file
-                        directory = "",              -- Text to show when the buffer is a directory
+                        modified = "[+]", -- Text to show when the buffer is modified
+                        alternate_file = "#", -- Text to show to identify the alternate file
+                        directory = "", -- Text to show when the buffer is a directory
                     },
                     -- filetype_names = {
                     --     TelescopePrompt = 'Telescope',

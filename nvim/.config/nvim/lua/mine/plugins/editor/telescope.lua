@@ -60,6 +60,8 @@ local opts = function()
             find_files = {
                 find_command = { "fd", "-HI", "-E", ".git", "-E", "node_modules" },
             },
+            live_grep = {
+            },
             buffers = {
                 sort_lastused = true,
                 sort_mru = true,
@@ -67,7 +69,7 @@ local opts = function()
             colorscheme = {
                 theme = "cursor",
                 enable_preview = true,
-            }
+            },
         },
     }
 end
@@ -81,10 +83,30 @@ return {
         init = function()
             vim.cmd.cabbrev("tl", "Telescope")
         end,
+        dependencies = {
+            { "nvim-lua/plenary.nvim" },
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                build = "make",
+            },
+            -- { 'nvim-telescope/telescope-ui-select.nvim' },
+            {
+                "nvim-tree/nvim-web-devicons",
+                event = { "UIEnter" }
+            }
+        },
+        opts = opts,
+        config = function(_, opts)
+            require("telescope").setup(opts)
+            require('telescope').load_extension('fzf')
+            -- require('telescope').load_extension('ui-select')
+        end,
         keys = {
             {
                 "<leader>ff",
-                function() require("telescope.builtin").find_files() end,
+                function()
+                    require("telescope.builtin").find_files()
+                end,
                 desc = "Fuzzy find files"
             },
             {
@@ -148,16 +170,6 @@ return {
                 desc = "Fuzzy find git commits of current buffer"
             }
         },
-        dependencies = {
-            { "nvim-lua/plenary.nvim" },
-            {
-                "nvim-telescope/telescope-fzf-native.nvim",
-                build = "make",
-            },
-            {
-                "nvim-tree/nvim-web-devicons"
-            }
-        },
-        opts = opts,
+
     },
 }

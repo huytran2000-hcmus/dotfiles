@@ -1,7 +1,7 @@
 return {
     -- https://github.com/goolord/alpha-nvim
     "goolord/alpha-nvim",
-    dependecies = {
+    dependencies = {
         "nvim-tree/nvim-web-devicons"
     },
     opts = function()

@@ -8,6 +8,7 @@ stow -d ~/.dotfiles -t ~ nvim
 stow -d ~/.dotfiles -t ~ bash
 stow -d ~/.dotfiles -t ~ vim
 stow -d ~/.dotfiles -t ~ psql
+stow -d ~/.dotfiles -t ~ ripgrep
 
 nix-env -iA \
     nixpkgs.git \
@@ -39,10 +40,10 @@ nix-env -iA \
 
 if [ ! -d ~/.fzf ] 
 then
-    git clone --filter=blob:none https://github.com/junegunn/fzf.git ~/.fzf && . ~/.fzf/install
+    git clone --filter=blob:none https://github.com/junegunn/fzf.git ~/.fzf
 else
-    cd ~/.fzf
-    git pull
+    cd ~/.fzf && git pull && ~/.fzf/install
+    pwd
     cd -
 fi
 ~/.fzf/install

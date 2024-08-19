@@ -1,15 +1,14 @@
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+    vim.lsp.handlers.hover, {
+        border = "rounded",
+    }
+)
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+    vim.lsp.handlers.signatureHelp, {
+        border = "rounded",
+    }
+)
 return {
-    diagnostic = {
-        virtual_text = { spacing = 4, prefix = "●" },
-        underline = true,
-        update_in_insert = false,
-        severity_sort = true,
-        float = {
-            focusable = true,
-            style = "minimal",
-            border = "rounded",
-        },
-    },
     servers = {
         gopls = require(PREFIX .. "lspconfig.servers.gopls"),
         lua_ls = require(PREFIX .. "lspconfig.servers.lua_ls"),
@@ -26,5 +25,7 @@ return {
         -- end,
         -- Specify * to use this function as a fallback for any server
         -- ["*"] = function(server, opts) end,
+        gopls = function(server, opts)
+        end,
     },
 }

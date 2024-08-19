@@ -2,46 +2,15 @@
 return {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPost", "BufNewFile" },
+    init = function()
+        vim.o.foldmethod = 'expr'
+        vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+        vim.o.foldenable = false
+    end,
     build = ":TSUpdate",
-    dependencies = {
-        "nvim-treesitter/playground",
-        cmd = "TSPlaygroundToggle",
-        opts = {
-            playground = {
-                enable = true,
-                disable = {},
-                updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
-                persist_queries = false, -- Whether the query persists across vim sessions
-                keybindings = {
-                    toggle_query_editor = 'o',
-                    toggle_hl_groups = 'i',
-                    toggle_injected_languages = 't',
-                    toggle_anonymous_nodes = 'a',
-                    toggle_language_display = 'I',
-                    focus_language = 'f',
-                    unfocus_language = 'F',
-                    update = 'R',
-                    goto_node = '<cr>',
-                    show_help = '?',
-                },
-            }
-        },
-        config = function(_, opts)
-            require("nvim-treesitter.configs").setup(opts)
-
-            AUTOCMD({ "BufEnter", "BufAdd", "BufNew", "BufNewFile", "BufWinEnter" }, {
-                group = AUGROUP("MyTreeSitter"),
-                callback = function()
-                    vim.opt.foldmethod = "expr"
-                    vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-                    vim.opt.foldenable = not vim.opt.foldenable
-                end,
-                desc = "Workaround for treesitter folding for lua",
-            })
-        end
-    },
+    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     opts = {
-        ensure_installed = { "go", "lua", "vimdoc", "vim", "python", "javascript", "sql" },
+        ensure_installed = { "go", "lua", "ruby", "vimdoc", "vim", "python", "javascript", "sql" },
         sync_install = false,
         auto_install = false, -- Only enable if have treesiter CLI
         ignore_install = {},
@@ -53,10 +22,10 @@ return {
         incremental_selection = {
             enable = true,
             keymaps = {
-                init_selection = "gnn", -- set to `false` to disable one of the mappings
-                node_incremental = "grn",
-                scope_incremental = "grc",
-                node_decremental = "grm",
+                init_selection = "<C-Space>", -- set to `false` to disable one of the mappings
+                node_incremental = "<C-Space>",
+                scope_incremental = false,
+                node_decremental = "<BS>",
             },
         },
     },
