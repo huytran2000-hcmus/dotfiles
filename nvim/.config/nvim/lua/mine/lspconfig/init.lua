@@ -8,12 +8,23 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
         border = "rounded",
     }
 )
+local on_attachs = {}
+on_attachs[#on_attachs + 1] = require(PREFIX .. "lspconfig.core").on_attach
+on_attachs[#on_attachs + 1] = require(PREFIX .. "lspconfig.autoformat").on_attach
+on_attachs[#on_attachs + 1] = require(PREFIX .. "lspconfig.inlay_hint").on_attach
+on_attachs[#on_attachs + 1] = require(PREFIX .. "lspconfig.codelens").on_attach
+
 return {
     servers = {
         gopls = require(PREFIX .. "lspconfig.servers.gopls"),
         lua_ls = require(PREFIX .. "lspconfig.servers.lua_ls"),
         jsonls = require(PREFIX .. "lspconfig.servers.jsonls"),
     },
+    on_attach = function(client, bufnr)
+        for _, on_attach in ipairs(on_attachs) do
+            on_attach(client, bufnr)
+        end
+    end,
     -- you can do any additional lsp server setup here
     -- return true if you don't want this server to be setup with lspconfig
     --@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>

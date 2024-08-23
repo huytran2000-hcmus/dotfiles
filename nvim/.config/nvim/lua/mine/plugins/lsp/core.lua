@@ -28,19 +28,10 @@ return {
                 vim.lsp.protocol.make_client_capabilities(),
                 require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
             )
-            local core_on_attach = require(PREFIX .. "lspconfig.core").on_attach
-            local format_on_attach = require(PREFIX .. "lspconfig.autoformat").on_attach
-            local inlay_hint_on_attach = require(PREFIX .. "lspconfig.inlay_hint").on_attach
-            local codelens_on_attach = require(PREFIX .. "lspconfig.codelens").on_attach
             local setup = function(server)
                 local server_opts = servers[server] or {}
                 server_opts = vim.tbl_deep_extend("force", {
-                    on_attach = function(client, bufnr)
-                        core_on_attach(client, bufnr)
-                        format_on_attach(client, bufnr)
-                        inlay_hint_on_attach(client, bufnr)
-                        codelens_on_attach(client, bufnr)
-                    end,
+                    on_attach = cfg.on_attach,
                     capabilities = vim.deepcopy(capabilities)
                 }, server_opts)
 

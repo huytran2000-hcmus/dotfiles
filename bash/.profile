@@ -59,3 +59,5 @@ export PATH=$HOME/.protobuf/bin/:$PATH
 eval $(ssh-agent -s) && ssh-add && (ssh-add ~/.ssh/finan.me_id 2> /dev/null) && (ssh-add ~/.ssh/deliveree_ed25519_id 2> /dev/null)
 
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
+
+export PATH=$PATH:~/.local/share/nvim/mason

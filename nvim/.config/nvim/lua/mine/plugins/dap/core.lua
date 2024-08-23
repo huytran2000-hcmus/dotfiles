@@ -7,6 +7,7 @@ return {
         { "<leader>di",  function() require("dap").step_into() end,         desc = "Debug: Step Into" },
         { "<leader>do",  function() require("dap").step_out() end,          desc = "Debug: Step Out" },
         { "<leader>dr",  function() require("dap").repl.open() end,         desc = "Debug: REPL" },
+        { "<leader>dg",  function() require("dap").goto_() end,             desc = "Debug: Go to" },
         { "<leader>dt",  function() require("dap").terminate() end,         desc = "Debug: Terminate" },
         { "<leader>dl",  function() require("dap").run_last() end,          desc = "Debug: Continue" },
         { "<leader>de",  function() require("dapui").eval() end,            desc = "Debug: Hover" },
@@ -18,6 +19,32 @@ return {
         "rcarriga/nvim-dap-ui",
         dependencies = {
             "nvim-neotest/nvim-nio",
+            {
+                "rcarriga/cmp-dap",
+                config = function()
+                    require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+                        sources = {
+                            { name = "dap" },
+                        },
+                    })
+                end
+            },
+            {
+                "williamboman/mason.nvim",
+                opts = function(_, opts)
+                    opts.ensure_installed = vim.list_extend(opts.ensure_installed, {
+                        "delve",
+                    })
+                    return opts
+                end,
+            },
+            {
+                "LiadOz/nvim-dap-repl-highlights",
+                config = function()
+                    require('nvim-dap-repl-highlights').setup()
+                    require('nvim-treesitter.configs').setup({ ensure_installed = { 'dap_repl' } })
+                end
+            },
         },
         opts = {
             controls = {
@@ -38,8 +65,8 @@ return {
                 },
                 {
                     elements = {
-                        { id = "console", size = 0.5 },
-                        { id = "repl",    size = 0.5 },
+                        -- { id = "console", size = 0.5 },
+                        { id = "repl", size = 1 },
                     },
                     size = 10,
                     position = "bottom"
@@ -53,7 +80,7 @@ return {
                 repl = "r",
                 toggle = "t"
             },
-        }
+        },
     },
     config = function()
         local dap = require("dap")
@@ -63,7 +90,7 @@ return {
             dap.adapters[adpt] = config
         end
 
-        -- Debugee configuration
+        -- Debuggee configuration
         for filetype, ft_cfg in pairs(cfg.debugees) do
             dap.configurations[filetype] = ft_cfg
         end
@@ -74,15 +101,17 @@ return {
 
         -- dap-ui configuration
         local dapui = require("dapui")
-        dap.listeners.after.event_initialized["dapui_config"] = function()
+        dap.listeners.after.event_initialized.dapui_config = function()
             dapui.open()
         end
-        dap.listeners.before.event_terminated["dapui_config"] = function()
+        dap.listeners.before.launch.dapui_config = function()
+            dapui.open()
+        end
+        dap.listeners.before.event_terminated.dapui_config = function()
             dapui.close()
         end
-        dap.listeners.before.event_exited["dapui_config"] = function()
+        dap.listeners.before.event_exited.dapui_config = function()
             dapui.close()
         end
-        -- LoadLaunchJSON(".vscode/launch.json")
     end,
 }

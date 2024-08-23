@@ -38,7 +38,7 @@ return {
                 parameterNames = true,
                 rangeVariableTypes = true,
             },
-            usePlaceholders = true,
+            -- usePlaceholders = true,
             directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
             semanticTokens = true,
             templateExtensions = { "tmpl" },

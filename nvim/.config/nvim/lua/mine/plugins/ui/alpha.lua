@@ -6,6 +6,35 @@ return {
     },
     opts = function()
         local dashboard = require("alpha.themes.dashboard")
+        local logo = [[
+         ,_------------._
+  ____,*^____      _____``*g*\"*,
+ /  _/ /'     \   /      \ ^@q   f
+[   @ | @))    |  | @))  |   0 _/
+ \`/   \_____ / __ \_____/    \
+  |           _l__l_           I
+  }          [______]           I
+  ]            | | |            |
+  ]             ~ ~             |
+  |                            |
+   |                           |
+]]
+
+        --    local logo = [[
+        --    ?~.-::::::-.~?
+        --   .:-::::::::::::::-:.
+        --   '_.:: ?? :: ??? ::._'
+        --    .:(  ?? ):( ???? ):.
+        --    '::: ? (..) ?? :::.
+        --    ':::::::??:::::::'
+        --  , .::::::::::::::::. ,
+        -- ?~?O::::./####\.::::O?~?
+        --    ~::::{##??##}::::~
+        --    ':::::\####/:::::'
+        --     .::::::::::::::.
+        --      ?oO::::::::Oo?
+        --    ]]
+        dashboard.section.header.val = vim.split(logo, "\n")
         dashboard.section.buttons.val = {
             dashboard.button("e", "  New file", "<cmd>ene<CR>"),
             dashboard.button("f", "  Find file", "<cmd>Telescope find_files<CR>"),

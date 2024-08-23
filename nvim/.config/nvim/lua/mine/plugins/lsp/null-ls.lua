@@ -1,3 +1,7 @@
+local core_on_attach = require(PREFIX .. "lspconfig.core").on_attach
+local format_on_attach = require(PREFIX .. "lspconfig.autoformat").on_attach
+local inlay_hint_on_attach = require(PREFIX .. "lspconfig.inlay_hint").on_attach
+local codelens_on_attach = require(PREFIX .. "lspconfig.codelens").on_attach
 return {
     -- https://github.com/jose-elias-alvarez/null-ls.nvim
     "nvimtools/none-ls.nvim",
