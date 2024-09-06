@@ -1,5 +1,5 @@
 local M = {}
-M.root_patterns = { ".git", "Makefile" }
+M.root_patterns = { ".git", "Makefile", "go.mod" }
 
 function M.get_root(buf)
     local bufnr = buf or 0
@@ -7,35 +7,47 @@ function M.get_root(buf)
         bufnr = vim.fn.bufnr(buf)
     end
 
-    local path = vim.api.nvim_buf_get_name(bufnr)
-    path = path ~= "" and vim.loop.fs_realpath(path) or nil
+    local bufpath = vim.api.nvim_buf_get_name(bufnr)
+    ---@type string?
+    bufpath = bufpath ~= "" and vim.loop.fs_realpath(bufpath) or nil
     local roots = {}
-    if path then
-        for _, client in pairs(vim.lsp.get_active_clients({ bufnr = bufnr })) do
-            local workspace = client.config.workspace_folders
-            local paths = workspace and vim.tbl_map(function(ws)
-                    return vim.uri_to_fname(ws.uri)
-                end, workspace) or client.config.root_dir and { client.config.root_dir } or {}
-            for _, p in ipairs(paths) do
-                local r = vim.loop.fs_realpath(p)
-                if path:find(r, 1, true) then
-                    roots[#roots + 1] = r
-                end
-            end
-        end
+    if bufpath then
+        roots = M.dectect_lsp(bufpath, bufnr)
     end
-    table.sort(roots, function(a, b)
-        return #a > #b
-    end)
-    local root = roots[1]
+
+    local root = roots and roots[1]
     if not root then
-        path = path and vim.fs.dirname(path) or vim.loop.cwd()
-        ---@type string?
-        root = vim.fs.find(M.root_patterns, { path = path, upward = true })[1]
+        bufpath = bufpath and vim.fs.dirname(bufpath) or vim.loop.cwd()
+        root = vim.fs.find(M.root_patterns, { path = bufpath, upward = true })[1]
         root = root and vim.fs.dirname(root) or vim.loop.cwd()
     end
-    ---@cast root string
     return root
+end
+
+function M.dectect_lsp(bufpath, bufnr)
+    local roots = {}
+    local client_roots = {}
+    for _, client in pairs(vim.lsp.get_clients({ bufnr = bufnr })) do
+        local workspace = client.config.workspace_folders
+        for _, ws in pairs(workspace or {}) do
+            local fname = vim.uri_to_fname(ws.uri)
+            if not vim.tbl_contains(roots, fname) then
+                roots[#roots + 1] = fname
+            end
+        end
+
+        if client.root_dir and not vim.tbl_contains(roots, client.root_dir) then
+            roots[#roots + 1] = client.root_dir
+        end
+    end
+
+    for _, root in pairs(roots) do
+        if root and bufpath:find(root, 1, true) == 1 then
+            return { root }
+        end
+    end
+
+    return roots
 end
 
 return M

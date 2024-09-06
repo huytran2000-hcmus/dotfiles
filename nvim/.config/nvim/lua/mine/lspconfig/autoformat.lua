@@ -59,6 +59,15 @@ function M.format()
         --     return client.name ~= "null-ls"
         -- end
     })
+
+    vim.lsp.buf.code_action({
+        context = {
+            only = {
+                "source.organizeImports"
+            }
+        },
+        apply = true
+    })
 end
 
 function M.supports_format(client)
