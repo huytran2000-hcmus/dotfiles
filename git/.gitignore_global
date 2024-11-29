@@ -5,3 +5,7 @@
 *.swp
 *.swo
 :w
+cmd_helper.sh
+go.work*
+"
+'

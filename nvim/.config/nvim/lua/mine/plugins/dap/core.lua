@@ -55,7 +55,14 @@ return {
             layouts = {
                 {
                     elements = {
-                        { id = "stacks",      size = 0.25 },
+                        -- { id = "console", size = 0.5 },
+                        { id = "repl", size = 1 },
+                    },
+                    size = 10,
+                    position = "bottom"
+                },
+                {
+                    elements = {
                         { id = "breakpoints", size = 0.25 },
                         { id = "watches",     size = 0.25 },
                         { id = "scopes",      size = 0.25 }
@@ -63,14 +70,7 @@ return {
                     size = 40,
                     position = "left"
                 },
-                {
-                    elements = {
-                        -- { id = "console", size = 0.5 },
-                        { id = "repl", size = 1 },
-                    },
-                    size = 10,
-                    position = "bottom"
-                }
+
             },
             mappings = {
                 edit = "e",
