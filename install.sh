@@ -9,6 +9,7 @@ stow -d ~/.dotfiles -t ~ bash
 stow -d ~/.dotfiles -t ~ vim
 stow -d ~/.dotfiles -t ~ psql
 stow -d ~/.dotfiles -t ~ ripgrep
+stow -d ~/.dotfiles -t ~ nix
 
 nix-env -iA \
     nixpkgs.git \
