@@ -132,3 +132,5 @@ alias ssh-setup='eval $(ssh-agent -s) && ssh-add'
 source ~/.kubectl/completion.bash
 source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/bashrc"
 . "$HOME/.asdf/asdf.sh"
+
+export GEMINI_API_KEY=$(cat ~/.gemini/api.key)
