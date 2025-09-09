@@ -1,16 +1,17 @@
 return {
     {
-        -- https://github.com/neovim/nvim-lspconfig
         "neovim/nvim-lspconfig",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             {
                 -- LSP manager
-                "williamboman/mason.nvim",
+                -- https://github.com/mason-org/mason.nvim
+                "mason-org/mason.nvim",
                 cmd = "Mason",
-                dependencies = {
-                    "williamboman/mason-lspconfig.nvim",
-                }
+            },
+            {
+                "mason-org/mason-lspconfig.nvim",
+                config = function() end
             },
             {
                 "hrsh7th/cmp-nvim-lsp",
@@ -23,15 +24,17 @@ return {
         config = function()
             local cfg = require(PREFIX .. "lspconfig")
             local servers = cfg.servers
+
+            local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
             local capabilities = vim.tbl_deep_extend(
                 "force",
                 vim.lsp.protocol.make_client_capabilities(),
-                require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+                has_cmp and cmp_nvim_lsp.default_capabilities() or {}
             )
+
             local setup = function(server)
                 local server_opts = servers[server] or {}
                 server_opts = vim.tbl_deep_extend("force", {
-                    on_attach = cfg.on_attach,
                     capabilities = vim.deepcopy(capabilities)
                 }, server_opts)
 
@@ -48,8 +51,11 @@ return {
                 require("lspconfig")[server].setup(server_opts)
             end
 
-            local mlsp = require("mason-lspconfig")
-            local available_server = mlsp.get_available_servers()
+            local have_mason, mlsp = pcall(require, "mason-lspconfig")
+            local available_server = {}
+            if have_mason then
+              available_server = vim.tbl_keys(require("mason-lspconfig").get_mappings().lspconfig_to_package)
+            end
             local ensure_installed = {} ---@type string[]
             for server, _ in pairs(servers) do
                 if not vim.tbl_contains(available_server, server) then
@@ -59,12 +65,16 @@ return {
             end
 
             require("neodev").setup()
-            require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
-            require("mason-lspconfig").setup_handlers({ setup })
+            if have_mason then
+                mlsp.setup({
+                    ensure_installed = ensure_installed,
+                    handlers = { setup },
+                })
+            end
         end,
     },
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         opts = {
             ensure_installed = {}, -- This is needed for append to
         },

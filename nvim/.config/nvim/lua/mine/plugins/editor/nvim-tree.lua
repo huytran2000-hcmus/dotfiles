@@ -12,40 +12,25 @@ local on_attach = function(bufnr)
 
     api.config.mappings.default_on_attach(bufnr)
 
-    local lib = require("nvim-tree.lib")
-    local view = require("nvim-tree.view")
+    local nodelib = api.node
+    local treelib = api.tree
 
     local function vsplit_preview()
-        -- open as vsplit on current node
-        local action = "vsplit"
-        local node = lib.get_node_at_cursor()
-        -- Just copy what"s done normally with vsplit
-        if not node and node.link_to and not node.nodes then
-            require("nvim-tree.actions.node.open-file").fn(action, node.link_to)
-        elseif node.nodes ~= nil then
-            lib.expand_or_collapse(node)
-        else
-            require("nvim-tree.actions.node.open-file").fn(action, node.absolute_path)
-        end
+        local node = treelib.get_node_under_cursor()
+        nodelib.open.vertical(node, {focus = true})
 
-        -- Finally refocus on tree if it was lost
-        view.focus()
+        if node.type ~= 'directory' then
+            treelib.close()
+        end
     end
 
     local function edit_or_open()
         -- open as vsplit on current node
         local action = "edit"
-        local node = lib.get_node_at_cursor()
-
-        -- Just copy what"s done normally with vsplit
-        if node.link_to and not node.nodes then
-            require("nvim-tree.actions.node.open-file").fn(action, node.link_to)
-            view.close() -- Close the tree if file was opened
-        elseif node.nodes ~= nil then
-            lib.expand_or_collapse(node)
-        else
-            require("nvim-tree.actions.node.open-file").fn(action, node.absolute_path)
-            view.close() -- Close the tree if file was opened
+        local node = treelib.get_node_under_cursor()
+        nodelib.open.edit(node, {focus = true})
+        if node.type ~= 'directory' then
+            treelib.close()
         end
     end
 

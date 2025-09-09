@@ -8,7 +8,6 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         { "nvim-lua/plenary.nvim" },
-        { "neovim/nvim-lspconfig" },
         {
             "williamboman/mason.nvim",
             opts = function(_, opts)
