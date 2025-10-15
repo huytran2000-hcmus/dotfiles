@@ -36,20 +36,23 @@ return {
                 type = "go",
                 name = "Debug",
                 request = "launch",
-                program = "${file}"
+                program = "${file}",
+                outputMode = "remote",
             },
             {
                 type = "go",
                 name = "Debug (go.mod)",
                 request = "launch",
-                program = "./${relativeFileDirname}"
+                program = "./${relativeFileDirname}",
+                outputMode = "remote",
             },
             {
                 type = "go",
                 name = "Debug test", -- configuration for debugging test files
                 request = "launch",
                 mode = "test",
-                program = "${file}"
+                program = "${file}",
+                outputMode = "remote",
             },
             -- works with go.mod packages and sub packages
             {
@@ -57,7 +60,8 @@ return {
                 name = "Debug test (go.mod)",
                 request = "launch",
                 mode = "test",
-                program = "./${relativeFileDirname}"
+                program = "./${relativeFileDirname}",
+                outputMode = "remote",
             }
         }
     }

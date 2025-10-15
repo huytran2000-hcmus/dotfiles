@@ -75,7 +75,7 @@ function M.supports_format(client)
         return false
     end
 
-    return client.supports_method("textDocument/formatting") or client.supports_method("textDocument/rangeFormatting")
+    return client:supports_method("textDocument/formatting") or client:supports_method("textDocument/rangeFormatting")
 end
 
 function M.on_attach(client, bufnr)

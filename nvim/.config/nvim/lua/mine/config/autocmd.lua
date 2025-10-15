@@ -1,7 +1,7 @@
 local yank_group = AUGROUP("MyYank")
 AUTOCMD("TextYankPost", {
     group = yank_group,
-    callback = function() vim.highlight.on_yank() end,
+    callback = function() vim.hl.on_yank() end,
     desc = "Briefly highlight the selected text"
 })
 

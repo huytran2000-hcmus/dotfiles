@@ -1,7 +1,7 @@
 local M = {}
 
 function M.on_attach(client, bufnr)
-    if not client.supports_method("textDocument/inlayHint") then
+    if not client:supports_method("textDocument/inlayHint") then
         return
     end
     vim.api.nvim_create_autocmd({ "LspAttach", "BufEnter", "CursorHold", "InsertLeave" }, {
