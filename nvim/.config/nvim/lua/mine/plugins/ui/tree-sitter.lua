@@ -10,7 +10,20 @@ return {
     build = ":TSUpdate",
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     opts = {
-        ensure_installed = { "go", "lua", "ruby", "vimdoc", "vim", "python", "javascript", "sql", "gomod", "gowork", "gosum" },
+        ensure_installed = {
+            "go",
+            "lua",
+            "ruby",
+            "vimdoc",
+            "vim",
+            "python",
+            "javascript",
+            "sql",
+            "gomod",
+            "gowork",
+            "gosum",
+            "dap_repl"
+        },
         sync_install = false,
         auto_install = false, -- Only enable if have treesiter CLI
         ignore_install = {},
