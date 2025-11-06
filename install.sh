@@ -1,8 +1,39 @@
 #. /home/huy/.nix-profile/etc/profile.d/nix.sh install nix
-curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
-. /home/huy/.nix-profile/etc/profile.d/nix.sh
+sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)
+# . /home/huy/.nix-profile/etc/profile.d/nix.sh
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
 
-. ~/.nix-profile/etc/profile.d/nix.sh
+if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
+
+[ ! -d ~/.setup_backup ] && mkdir ~/.setup_backup && mv ~/.bashrc ~/.profile ~/.setup_backup
+
+nix-channel --add https://nixos.org/channels/nixpkgs-unstable unstable
+
+nix-env -iA nixpkgs.git
+nix-env -iA nixpkgs.stow
+nix-env -iA nixpkgs.go
+nix-env -iA nixpkgs.ripgrep
+nix-env -iA nixpkgs.fd
+nix-env -iA nixpkgs.neovim
+nix-env -iA nixpkgs.glow
+nix-env -iA nixpkgs.fontconfig
+nix-env -iA nixpkgs.unzip
+nix-env -iA nixpkgs.curl
+nix-env -iA nixpkgs.gnutar
+nix-env -iA nixpkgs.gzip
+nix-env -iA nixpkgs.wget
+nix-env -iA nixpkgs.gcc
+nix-env -iA nixpkgs.gnumake
+nix-env -iA nixpkgs.direnv
+nix-env -iA nixpkgs.tldr
+nix-env -iA nixpkgs.jq
+nix-env -iA nixpkgs.tree
+nix-env -iA nixpkgs.mkcert
+nix-env -iA nixpkgs.nss_latest
+
+
 stow -d ~/.dotfiles -t ~ git
 stow -d ~/.dotfiles -t ~ nvim
 stow -d ~/.dotfiles -t ~ bash
@@ -10,34 +41,6 @@ stow -d ~/.dotfiles -t ~ vim
 stow -d ~/.dotfiles -t ~ psql
 stow -d ~/.dotfiles -t ~ ripgrep
 stow -d ~/.dotfiles -t ~ nix
-
-nix-env -iA \
-    nixpkgs.git \
-    nixpkgs.stow \
-    nixpkgs.go \
-    nixpkgs.ripgrep \
-    nixpkgs.fd \
-    nixpkgs.neovim \
-    nixpkgs.glow \
-    nixpkgs.fontconfig \
-    nixpkgs.unzip \
-    nixpkgs.curl \
-    nixpkgs.gnutar \
-    nixpkgs.gzip \
-    nixpkgs.wget \
-    nixpkgs.gcc \
-    nixpkgs.gnumake \
-    nixpkgs.direnv \
-    nixpkgs.tldr \
-    nixpkgs.jq \
-    nixpkgs.tree \
-    nixpkgs.adoptopenjdk-openj9-bin-11 \
-    nixpkgs.maven \
-    nixpkgs.mkcert \
-    nixpkgs.nss_latest \
-    nixpkgs.nodejs_21
-
-[ ! -d ~/.setup_backup ] && mkdir ~/.setup_backup && mv ~/.bashrc ~/.profile ~/.setup_backup
 
 if [ ! -d ~/.fzf ] 
 then

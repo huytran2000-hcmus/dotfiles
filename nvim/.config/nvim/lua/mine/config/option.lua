@@ -47,15 +47,15 @@ vim.opt.undofile = true
 -- vim.opt.undolevels = 1000
 vim.opt.shada = "!,'100,f1,<100,s50,h"
 
-vim.g.clipboard = {
-    name = 'WslClipboard',
-    copy = {
-        ["+"] = 'clip.exe',
-        ["*"] = 'clip.exe',
-    },
-    paste = {
-        ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-        ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    },
-    cache_enabled = 0,
-}
+-- vim.g.clipboard = {
+--     name = 'WslClipboard',
+--     copy = {
+--         ["+"] = 'clip.exe',
+--         ["*"] = 'clip.exe',
+--     },
+--     paste = {
+--         ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+--         ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+--     },
+--     cache_enabled = 0,
+-- }
