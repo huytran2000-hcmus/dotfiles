@@ -7,18 +7,6 @@ return {
                 -- LSP manager
                 -- https://github.com/mason-org/mason.nvim
                 "mason-org/mason.nvim",
-                cmd = "Mason",
-                opts = {
-                    ensure_installed = {
-                        "prettier",
-                        "shfmt",
-                        -- "gofumpt", -- Already include in gopls
-                        "goimports-reviser",
-                        "golangci-lint",
-                        "codespell",
-                        "delve",
-                    }
-                },
             },
             {
                 "mason-org/mason-lspconfig.nvim",
@@ -32,7 +20,7 @@ return {
                 "folke/neodev.nvim",
             },
         },
-        config = function()
+        config = function(_, opts)
             local cfg = require(PREFIX .. "lspconfig")
             local servers = cfg.servers
 
@@ -76,6 +64,34 @@ return {
                 })
             end
             require("neodev").setup()
+        end,
+    },
+    {
+        "mason-org/mason.nvim",
+        opts = {
+            ensure_installed = {
+                "prettier",
+                "shfmt",
+                -- "gofumpt", -- Already include in gopls
+                "goimports-reviser",
+                "golangci-lint",
+                "codespell",
+                "delve",
+            }
+        },
+        ---@param opts MasonSettings | {ensure_installed: string[]}
+        config = function(_, opts)
+            require("mason").setup(opts)
+            local registry = require("mason-registry")
+            local ensure_installed = function()
+                for _, pkg in ipairs(opts.ensure_installed) do
+                    if not registry.is_installed(pkg) then
+                        local p = registry.get_package(pkg)
+                        p:install()
+                    end
+                end
+            end
+            registry.refresh(ensure_installed)
         end,
     },
     {

@@ -34,9 +34,9 @@ return {
     servers = {
         gopls = require(PREFIX .. "lspconfig.servers.gopls"),
         lua_ls = require(PREFIX .. "lspconfig.servers.lua_ls"),
-        jsonls = require(PREFIX .. "lspconfig.servers.jsonls"),
+        json_lsp = require(PREFIX .. "lspconfig.servers.json_lsp"),
     },
-    
+
 
     -- you can do any additional lsp server setup here
     -- return true if you don't want this server to be setup with lspconfig

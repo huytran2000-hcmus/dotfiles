@@ -22,7 +22,6 @@ return {
             "gomod",
             "gowork",
             "gosum",
-            "dap_repl"
         },
         sync_install = false,
         auto_install = false, -- Only enable if have treesiter CLI

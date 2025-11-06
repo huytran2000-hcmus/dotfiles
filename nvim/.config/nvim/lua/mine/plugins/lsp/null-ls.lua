@@ -8,20 +8,6 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         { "nvim-lua/plenary.nvim" },
-        {
-            "williamboman/mason.nvim",
-            opts = function(_, opts)
-                opts.ensure_installed = vim.list_extend(opts.ensure_installed, {
-                    "prettier",
-                    "shfmt",
-                    -- "gofumpt", -- Already include in gopls
-                    "goimports-reviser",
-                    "golangci-lint",
-                    "codespell"
-                })
-                return opts
-            end,
-        },
     },
     opts = function()
         local nls = require("null-ls")
