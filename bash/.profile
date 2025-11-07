@@ -12,20 +12,20 @@ if [ -e /home/huy/.nix-profile/etc/profile.d/nix.sh ]; then . /home/huy/.nix-pro
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
+	# include .bashrc if it exists
+	if [ -f "$HOME/.bashrc" ]; then
+		. "$HOME/.bashrc"
+	fi
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+if [ -d "$HOME/bin" ]; then
+	PATH="$HOME/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+if [ -d "$HOME/.local/bin" ]; then
+	PATH="$HOME/.local/bin:$PATH"
 fi
 
 # go
@@ -34,10 +34,9 @@ PATH=/usr/local/go/bin:$PATH
 export GOPATH=$HOME/go
 PATH=$GOPATH/bin:$PATH
 
-
 # fzf
 if [[ ! "$PATH" == */home/huy/.fzf/bin* ]]; then
-  PATH="${PATH:+${PATH}:}/home/huy/.fzf/bin"
+	PATH="${PATH:+${PATH}:}/home/huy/.fzf/bin"
 fi
 
 export FZF_DEFAULT_COMMAND="fd --type f --color auto --hidden --no-ignore"
@@ -56,8 +55,10 @@ export PATH=$HOME/.linkerd2/bin:$PATH
 
 export PATH=$HOME/.protobuf/bin/:$PATH
 
-eval $(ssh-agent -s) && ssh-add && (ssh-add ~/.ssh/finan.me_id 2> /dev/null) && (ssh-add ~/.ssh/deliveree_ed25519_id 2> /dev/null)
+eval $(ssh-agent -s) && ssh-add && (ssh-add ~/.ssh/finan.me_id 2>/dev/null) && (ssh-add ~/.ssh/deliveree_ed25519_id 2>/dev/null)
 
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
 export PATH=$PATH:~/.local/share/nvim/mason
+
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"

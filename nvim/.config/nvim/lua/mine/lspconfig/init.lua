@@ -34,7 +34,7 @@ return {
     servers = {
         gopls = require(PREFIX .. "lspconfig.servers.gopls"),
         lua_ls = require(PREFIX .. "lspconfig.servers.lua_ls"),
-        json_lsp = require(PREFIX .. "lspconfig.servers.json_lsp"),
+        jsonls = require(PREFIX .. "lspconfig.servers.jsonls"),
     },
 
 

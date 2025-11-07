@@ -15,7 +15,7 @@ return {
         return {
             -- Must exist in PATH
             sources = {
-                builtins.formatting.prettier,
+                -- builtins.formatting.prettier,
                 -- builtins.formatting.fixjson,
                 -- builtins.formatting.gofmt,
                 builtins.formatting.shfmt,
@@ -23,7 +23,8 @@ return {
                 builtins.formatting.goimports_reviser,
                 -- builtins.hover.dictionary,
                 builtins.diagnostics.golangci_lint,
-                builtins.diagnostics.codespell,
+                -- builtins.diagnostics.codespell,
+                builtins.completion.spell,
                 -- builtins.formatting.write_good,
             },
             debounce = 250,

@@ -2,7 +2,7 @@
 sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)
 # . /home/huy/.nix-profile/etc/profile.d/nix.sh
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+	. '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
@@ -32,7 +32,7 @@ nix-env -iA nixpkgs.jq
 nix-env -iA nixpkgs.tree
 nix-env -iA nixpkgs.mkcert
 nix-env -iA nixpkgs.nss_latest
-
+nix-env -iA nixpkgs.nodejs_24
 
 stow -d ~/.dotfiles -t ~ git
 stow -d ~/.dotfiles -t ~ nvim
@@ -42,18 +42,17 @@ stow -d ~/.dotfiles -t ~ psql
 stow -d ~/.dotfiles -t ~ ripgrep
 stow -d ~/.dotfiles -t ~ nix
 
-if [ ! -d ~/.fzf ] 
-then
-    git clone --filter=blob:none https://github.com/junegunn/fzf.git ~/.fzf
+if [ ! -d ~/.fzf ]; then
+	git clone --filter=blob:none https://github.com/junegunn/fzf.git ~/.fzf
 else
-    cd ~/.fzf && git pull && ~/.fzf/install
-    pwd
-    cd -
+	cd ~/.fzf && git pull && ~/.fzf/install
+	pwd
+	cd -
 fi
 ~/.fzf/install
 
-mkdir -p ~/.local/share/fonts && sudo wget -q -O /tmp/Hack.zip https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip \
-    && unzip -o -q /tmp/Hack.zip -d ~/.local/share/fonts/ && sudo rm -rf /tmp/Hack.zip /tmp/Hack
+mkdir -p ~/.local/share/fonts && sudo wget -q -O /tmp/Hack.zip https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip &&
+	unzip -o -q /tmp/Hack.zip -d ~/.local/share/fonts/ && sudo rm -rf /tmp/Hack.zip /tmp/Hack
 
 fc-cache -f -v
 
@@ -69,4 +68,3 @@ stow -d ~/.dotfiles -t ~/.kubectl kubectl
 . ~/.profile
 
 nvim --headless +"Lazy sync" +qall
-
