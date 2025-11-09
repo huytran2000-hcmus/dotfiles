@@ -64,22 +64,23 @@ stow -d ~/.dotfiles -t ~/.kubectl kubectl
 # stow -d ~/.dotfiles -t /var/lib/postgresql psql
 # exit
 
-. ~/.profile
-
-nvim --headless +"Lazy sync" +qall
-
 if [[ "$SHELL" == *"zsh"* ]]; then
-	if ! grep -qxF '. ~/.myyprofile.sh'; then
-		echo '. ~/.myyprofile.sh' >>~/.zprofile
+	if ! grep -qxF '. ~/.myprofile.sh' ~/.zprofile; then
+		echo '. ~/.myprofile.sh' >>~/.zprofile
 	fi
-	if ! grep -qxF '. ~/.myzshrc.sh'; then
+	if ! grep -qxF '. ~/.myzshrc.sh' ~/.zshrc; then
 		echo '. ~/.myzshrc.sh' >>~/.zshrc
 	fi
+	. ~/.myzshrc.sh
+	. ~/.zprofile
 elif [[ "$SHELL" == *"bash"* ]]; then
-	if ! grep -qxF '. ~/.myprofile' ~/.profile; then
+	if ! grep -qxF '. ~/.myprofile.sh' ~/.profile; then
 		echo '. ~/.myprofile.sh' >>~/.profile
 	fi
 	if ! grep -qxF '. ~/.mybashrc.sh' ~/.bashrc; then
 		echo '. ~/.mybashrc.sh' >>~/.bashrc
 	fi
+	. ~/.profile
 fi
+
+nvim --headless +"Lazy sync" +qall
