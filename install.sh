@@ -1,5 +1,5 @@
 #. /home/huy/.nix-profile/etc/profile.d/nix.sh install nix
-sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)
+sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --daemon
 # . /home/huy/.nix-profile/etc/profile.d/nix.sh
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
 	. '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
@@ -13,7 +13,6 @@ nix-channel --add https://nixos.org/channels/nixpkgs-unstable unstable
 
 nix-env -iA nixpkgs.git
 nix-env -iA nixpkgs.stow
-nix-env -iA nixpkgs.go
 nix-env -iA nixpkgs.ripgrep
 nix-env -iA nixpkgs.fd
 nix-env -iA nixpkgs.neovim
@@ -68,3 +67,19 @@ stow -d ~/.dotfiles -t ~/.kubectl kubectl
 . ~/.profile
 
 nvim --headless +"Lazy sync" +qall
+
+if [[ "$SHELL" == *"zsh"* ]]; then
+	if ! grep -qxF '. ~/.myyprofile.sh'; then
+		echo '. ~/.myyprofile.sh' >>~/.zprofile
+	fi
+	if ! grep -qxF '. ~/.myzshrc.sh'; then
+		echo '. ~/.myzshrc.sh' >>~/.zshrc
+	fi
+elif [[ "$SHELL" == *"bash"* ]]; then
+	if ! grep -qxF '. ~/.myprofile' ~/.profile; then
+		echo '. ~/.myprofile.sh' >>~/.profile
+	fi
+	if ! grep -qxF '. ~/.mybashrc.sh' ~/.bashrc; then
+		echo '. ~/.mybashrc.sh' >>~/.bashrc
+	fi
+fi

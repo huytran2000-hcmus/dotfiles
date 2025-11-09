@@ -47,15 +47,40 @@ vim.opt.undofile = true
 -- vim.opt.undolevels = 1000
 vim.opt.shada = "!,'100,f1,<100,s50,h"
 
--- vim.g.clipboard = {
---     name = 'WslClipboard',
---     copy = {
---         ["+"] = 'clip.exe',
---         ["*"] = 'clip.exe',
---     },
---     paste = {
---         ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
---         ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
---     },
---     cache_enabled = 0,
--- }
+vim.g.clipboard = {
+    name = 'WslClipboard',
+    copy = {
+        ["+"] = 'clip.exe',
+        ["*"] = 'clip.exe',
+    },
+    paste = {
+        ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    },
+    cache_enabled = 0,
+}
+
+local function setup_wsl2_clipboard()
+    -- Check if we're in WSL
+    local is_wsl = vim.fn.has('wsl') == 1 or
+        (vim.fn.exists('$WSL_DISTRO_NAME') == 1) or
+        (vim.fn.filereadable('/proc/sys/fs/binfmt_misc/WSLInterop') == 1)
+
+    if is_wsl then
+        -- WSL2 clipboard using win32yank
+        vim.g.clipboard = {
+            name = 'WslClipboard',
+            copy = {
+                ["+"] = 'clip.exe',
+                ["*"] = 'clip.exe',
+            },
+            paste = {
+                ["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+                ["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            },
+            cache_enabled = 0,
+        }
+    end
+end
+
+setup_wsl2_clipboard()
