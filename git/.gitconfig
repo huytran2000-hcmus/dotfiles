@@ -12,9 +12,11 @@
 	br = branch
 	st = status
 	sw = switch
-[credential]
-    helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
-[includeIf "gitdir:**/deliveree/**/.git"]
-  path = ~/deliveree/.gitconfig.deliveree
-[url "git@bitbucket.org:"]
-	insteadOf = https://bitbucket.org/
+; [credential]
+;     helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
+; [includeIf "gitdir:**/deliveree/**/.git"]
+;   path = ~/deliveree/.gitconfig.deliveree
+; [url "git@bitbucket.org:"]
+; 	insteadOf = https://bitbucket.org/
+[includeIf "gitdir:**/zlp/**/.git"]
+    path = ~/zlp/.gitconfig
