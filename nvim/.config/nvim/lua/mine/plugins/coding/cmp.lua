@@ -27,10 +27,10 @@ return {
             build = "make install_jsregexp", -- needed for snippet transformation
             dependencies = {
                 "rafamadriz/friendly-snippets",
-                config = function()
-                    require("luasnip.loaders.from_vscode").lazy_load()
-                end
-            }
+            },
+            config = function()
+                require("luasnip.loaders.from_vscode").lazy_load()
+            end
         },
         {
             "windwp/nvim-autopairs",
@@ -53,12 +53,12 @@ return {
             max_item_count = maximum items for a source
             --]]
             sources = {
-                { name = "nvim_lsp",               keyword_length = 3, max_item_count = 10 },
-                { name = "luasnip" },
-                { name = "nvim_lua" },
-                { name = "nvim_lsp_signature_help" },
-                { name = "buffer",                 keyword_length = 3 },
-                { name = "path" },
+                { name = "nvim_lsp",                priority = 100, keyword_length = 3, max_item_count = 10 },
+                { name = "nvim_lsp_signature_help", priority = 5 },
+                { name = "luasnip",                 priority = 5 },
+                { name = "nvim_lua",                priority = 3 },
+                { name = "buffer",                  priority = 2 },
+                { name = "path",                    priority = 1 },
             },
             snippet = {
                 expand = function(args)
@@ -75,6 +75,7 @@ return {
                     side_padding = 3,
                 },
             },
+            preselect = cmp.PreselectMode.None,
             mapping = cmp.mapping.preset.insert {
                 ["<C-Space>"] = cmp.mapping.complete(),
                 ["<C-e>"] = cmp.mapping.close(),
@@ -84,28 +85,37 @@ return {
                     end
                     fallback()
                 end, { "i", "c" }),
-                ["<C-j>"] = cmp.mapping.select_next_item(),
-                ["<C-k>"] = cmp.mapping.select_prev_item(),
+                ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+                ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
                 ["<C-d>"] = cmp.mapping.scroll_docs(4),
                 ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-                ["<Tab>"] = cmp.mapping(function(fallback)
-                    if has_words_before() then
-                        cmp.confirm({
-                            select = true,
-                            behavior = cmp.ConfirmBehavior.Replace,
-                        })
+                ["<CR>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        local ls = require("luasnip")
+                        if ls.expandable() then
+                            ls.expand()
+                        elseif has_words_before() then
+                            cmp.confirm({
+                                select = true,
+                                behavior = cmp.ConfirmBehavior.Replace,
+                            })
+                        else
+                            fallback()
+                        end
                     else
                         fallback()
                     end
                 end),
-                ["<C-n>"] = cmp.mapping(function()
+                ["<Tab>"] = cmp.mapping(function(fallback)
                     local ls = require("luasnip")
-                    ls.jump(1)
-                end),
-                ["<C-p>"] = cmp.mapping(function()
-                    local ls = require("luasnip")
-                    ls.jump(-1)
-                end),
+                    if cmp.visible() then
+                        cmp.select_next_item()
+                    elseif ls.locally_jumpable(1) then
+                        ls.jump(1)
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
             },
             formatting = {
                 fields = { "menu", "abbr", "kind" },
@@ -140,6 +150,16 @@ return {
                     end
                 end,
             },
+            ['<C-p>'] = {
+                c = function(fallback)
+                    fallback()
+                end
+            },
+            ['<C-n>'] = {
+                c = function(fallback)
+                    fallback()
+                end
+            }
         })
         cmp.setup(opts)
         cmp.setup.cmdline({ '/', '?' }, {
