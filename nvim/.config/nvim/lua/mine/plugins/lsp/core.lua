@@ -71,7 +71,6 @@ return {
         opts = {
             ensure_installed = {
                 "shfmt",
-                -- "gofumpt", -- Already include in gopls
                 "goimports-reviser",
                 "golangci-lint",
                 "codespell",
