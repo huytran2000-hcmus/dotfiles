@@ -67,8 +67,14 @@ return {
             "toggleterm",
         },
         sections = {
-            lualine_a = { "mode" },
-            lualine_b = { "branch" },
+            lualine_a = { "mode", "searchcount" },
+            lualine_b = {
+                { "branch" },
+                {
+                    "diff",
+                    symbols = { added = "+", modified = "~", remove = "-" }
+                }
+            },
             lualine_c = {
                 {
                     "diagnostics",
@@ -88,12 +94,11 @@ return {
 
             },
             lualine_y = {
-                {
-                    "diff",
-                    symbols = { added = "+", modified = "~", remove = "-" }
-                }
+                function()
+                    return require("auto-session.lib").current_session_name(true)
+                end,
             },
-            lualine_z = { "searchcount", "%S" },
+            lualine_z = { "%S" },
         },
         winbar = {
             lualine_a = {
