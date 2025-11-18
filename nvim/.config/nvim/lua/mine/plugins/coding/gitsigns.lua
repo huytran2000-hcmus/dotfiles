@@ -1,7 +1,8 @@
 return {
     "lewis6991/gitsigns.nvim",
+    lazy = false,
     opts = {
-        signs                   = {
+        signs                        = {
             add          = { text = '+' },
             change       = { text = '~' },
             delete       = { text = '_', show_count = true },
@@ -9,72 +10,92 @@ return {
             changedelete = { text = '󱣳', show_count = true },
             untracked    = { text = '┆' },
         },
-        watch_gitdir            = {
-            interval = 1000,
+        signs_staged                 = {
+            add          = { text = '+' },
+            change       = { text = '~' },
+            delete       = { text = '_', show_count = true },
+            topdelete    = { text = '‾', show_count = true },
+            changedelete = { text = '󱣳', show_count = true },
+            untracked    = { text = '┆' },
+        },
+        signs_staged_enable          = true,
+        signcolumn                   = true,  -- Toggle with `:Gitsigns toggle_signs`
+        numhl                        = false, -- Toggle with `:Gitsigns toggle_numhl`
+        linehl                       = false, -- Toggle with `:Gitsigns toggle_linehl`
+        word_diff                    = false, -- Toggle with `:Gitsigns toggle_word_diff`
+        watch_gitdir                 = {
             follow_files = true,
         },
-        attach_to_untracked     = true,
-        signcolumn              = true,  -- Toggle with `:Gitsigns toggle_signs`
-        numhl                   = false, -- Toggle with `:Gitsigns toggle_numhl`
-        linehl                  = false, -- Toggle with `:Gitsigns toggle_linehl`
-        word_diff               = false, -- Toggle with `:Gitsigns toggle_word_diff`
-        current_line_blame      = false,
-        current_line_blame_opts = {
+        auto_attach                  = true,
+        attach_to_untracked          = true,
+        current_line_blame           = true,
+        current_line_blame_opts      = {
             virt_text = true,
             virt_text_pos = "eol",
             delay = 500,
             ignore_whitespace = false,
+            use_focus = true,
         },
-        max_file_length         = 10000,
-        on_attach               = function(bufnr)
-            local gs = package.loaded.gitsigns
+        current_line_blame_formatter = '<author>, <author_time:%R> - <summary>',
+        sign_priority                = 6,
+        update_debounce              = 100,
+        status_formatter             = nil, -- Use default
+        max_file_length              = 10000,
+        preview_config               = {
+            -- Options passed to nvim_open_win
+            style = 'minimal',
+            relative = 'cursor',
+            row = 0,
+            col = 1
+        },
+        on_attach                    = function(bufnr)
+            local gitsigns = require('gitsigns')
             NNOREMAP("]c", function()
-                if vim.wo.diff then return "]c" end
-                vim.schedule(function() gs.next_hunk() end)
-                return "<Ignore>"
-            end, { expr = true })
+                if vim.wo.diff then
+                    vim.cmd.normal({ '[c', bang = true })
+                else
+                    gitsigns.nav_hunk('next')
+                end
+            end, { desc = "Gitsigns: Next hunk" })
 
             NNOREMAP("[c", function()
-                if vim.wo.diff then return "[c" end
-                vim.schedule(function() gs.prev_hunk() end)
-                return "<Ignore>"
-            end, { expr = true })
+                if vim.wo.diff then
+                    vim.cmd.normal({ '[c', bang = true })
+                else
+                    gitsigns.nav_hunk('prev')
+                end
+            end, { desc = "Gitsigns: Previous hunk" })
 
-            NNOREMAP('<leader>hs', gs.stage_hunk, { desc = "Gitsigns: Stage hunk" })
-            NNOREMAP('<leader>hr', gs.reset_hunk, { desc = "Gitsigns: Reset hunk" })
+            NNOREMAP('<leader>hs', gitsigns.stage_hunk, { desc = "Gitsigns: Stage/Unstage hunk" })
+            NNOREMAP('<leader>hr', gitsigns.reset_hunk, { desc = "Gitsigns: Reset hunk" })
 
             NNOREMAP('<leader>hls', function()
                 local cur_line = vim.api.nvim_win_get_cursor(0)[1]
-                gs.stage_hunk({ cur_line, cur_line })
-            end, { desc = "Gitsigns: Stage current line" })
-
+                gitsigns.stage_hunk({ cur_line, cur_line })
+            end, { desc = "Gitsigns: Stage/Unstage current line" })
             NNOREMAP('<leader>hlr', function()
                 local cur_line = vim.api.nvim_win_get_cursor(0)[1]
-                gs.reset_hunk({ cur_line, cur_line })
+                gitsigns.reset_hunk({ cur_line, cur_line })
             end, { desc = "Gitsigns: Reset current line" })
 
             NNOREMAP('<leader>hh', function()
-                    gs.select_hunk()
+                    gitsigns.select_hunk()
                 end,
                 { desc = "Gitsigns: Select hunk" })
 
-            VNOREMAP('<leader>hs', function() gs.stage_hunk { vim.fn.line("."), vim.fn.line("v") } end,
-                { desc = "Gitsigns: Stage visual selected" })
 
-            VNOREMAP('<leader>hr', function() gs.reset_hunk { vim.fn.line("."), vim.fn.line("v") } end,
-                { desc = "Stage visual selected" })
+            NNOREMAP('<leader>hp', gitsigns.preview_hunk, { desc = "Gitsigns: Preview hunk" })
+            NNOREMAP('<leader>hi', gitsigns.preview_hunk_inline, { desc = "Gitsigns: Inline preview hunk" })
 
-            NNOREMAP('<leader>hu', gs.undo_stage_hunk, { desc = "Gitsigns: Unstage hunk" })
-            NNOREMAP('<leader>hp', gs.preview_hunk, { desc = "Gitsigns: Preview hunk" })
-            NNOREMAP('<leader>hS', gs.stage_buffer, { desc = "Gitsigns: Stage buffer" })
-            NNOREMAP('<leader>hR', gs.reset_buffer, { desc = "Gitsigns: Reset buffer" })
-            NNOREMAP('<leader>hb', function() gs.blame_line { full = true } end,
+            NNOREMAP('<leader>hS', gitsigns.stage_buffer, { desc = "Gitsigns: Stage buffer" })
+            NNOREMAP('<leader>hR', gitsigns.reset_buffer, { desc = "Gitsigns: Reset buffer" })
+
+            NNOREMAP('<leader>hb', function() gitsigns.blame_line { full = true } end,
                 { desc = "Gitsigns: Blame current line" })
-            NNOREMAP('<leader>tb', gs.toggle_current_line_blame, { desc = "Gitsigns: Toggle blame current line" })
-            NNOREMAP('<leader>hd', gs.diffthis, { desc = "Gitsigns: Diff this blame" })
-            NNOREMAP('<leader>hD', function() gs.diffthis('@') end,
+
+            NNOREMAP('<leader>hd', gitsigns.diffthis, { desc = "Gitsigns: Diff this blame" })
+            NNOREMAP('<leader>hD', function() gitsigns.diffthis('@') end,
                 { desc = "Gitsigns: Diff blame against its parent commit" })
-            NNOREMAP('<leader>td', gs.toggle_deleted, { desc = "Gitsigns: Toogle deleted" })
         end
     }
 }

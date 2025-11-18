@@ -1,0 +1,103 @@
+return {
+    -- "ibhagwan/fzf-lua",
+    -- -- optional for icon support
+    -- dependencies = { "nvim-tree/nvim-web-devicons" },
+    -- opts = {
+    --     keymap = {
+    --         builtin = {
+    --             ["<C-h>"] = "toggle-help",
+    --             ["<C-n>"] = "preview-page-down",
+    --             ["<C-p>"] = "preview-page-up",
+    --         },
+    --         fzf = {
+    --             ["ctrl-z"]     = "abort",
+    --             ["ctrl-u"]     = "unix-line-discard",
+    --             ["ctrl-f"]     = "half-page-down",
+    --             ["ctrl-b"]     = "half-page-up",
+    --             ["ctrl-a"]     = "beginning-of-line",
+    --             ["ctrl-e"]     = "end-of-line",
+    --             ["alt-a"]      = "toggle-all",
+    --             ["alt-g"]      = "first",
+    --             ["alt-G"]      = "last",
+    --             -- Only valid with fzf previewers (bat/cat/git/etc)
+    --             ["f3"]         = "toggle-preview-wrap",
+    --             ["f4"]         = "toggle-preview",
+    --             ["shift-down"] = "preview-page-down",
+    --             ["shift-up"]   = "preview-page-up",
+    --         },
+    --     },
+    -- },
+    -- config = function(_, opts)
+    --     P(opts)
+    --     local fzf = require("fzf-lua").setup(opts)
+    -- end,
+    -- keys = {
+    --     {
+    --         "<leader>ff",
+    --         function()
+    --             require("fzf-lua").files()
+    --         end,
+    --         desc = "Fuzzy find files"
+    --     },
+    --     {
+    --         "<leader>f%",
+    --         function() require("fzf-lua").grep_curbuf() end,
+    --         desc = "Fuzzy find current buffer"
+    --     },
+    --     {
+    --         "<leader>fe",
+    --         function() require("fzf-lua").live_grep() end,
+    --         desc = "Fuzzy live grep"
+    --     },
+    --     {
+    --         "<leader>fb",
+    --         function() require("fzf-lua").buffers() end,
+    --         desc = "Fuzzy find in buffers"
+    --     },
+    --     {
+    --         "<leader>fh",
+    --         function() require("fzf-lua").helptags() end,
+    --         desc = "Fuzzy find help tags"
+    --     },
+    --     {
+    --         "<leader>f*",
+    --         function() require("fzf-lua").helptags() end,
+    --         desc = "Fuzzy find the string under cursor"
+    --     },
+    --     {
+    --         "<leader>fd",
+    --         function() require("fzf-lua").diagnostics_document() end,
+    --         desc = "Fuzzy find old files"
+    --     },
+    --     {
+    --         "<leader>fo",
+    --         function() require("fzf-lua").oldfiles() end,
+    --         desc = "Fuzzy find old files"
+    --     },
+    --     {
+    --         "<leader>fr",
+    --         function() require("fzf-lua").resume() end,
+    --         desc = "Resume last telescope picker"
+    --     },
+    --     {
+    --         "<leader>fgb",
+    --         function() require("fzf-lua").git_branches() end,
+    --         desc = "Fuzzy checkout git branch"
+    --     },
+    --     {
+    --         "<leader>fgt",
+    --         function() require("fzf-lua").git_status() end,
+    --         desc = "Fuzzy check git file status"
+    --     },
+    --     {
+    --         "<leader>fgc",
+    --         function() require("fzf-lua").git_commits() end,
+    --         desc = "Fuzzy checkout and reset git commits"
+    --     },
+    --     {
+    --         "<leader>fgh",
+    --         function() require("fzf-lua").git_bcommits() end,
+    --         desc = "Fuzzy find git commits of current buffer"
+    --     }
+    -- }
+}

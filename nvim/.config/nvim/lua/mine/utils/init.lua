@@ -43,6 +43,6 @@ function Has(plugin)
     return require("lazy.core.config").plugins[plugin] ~= nil
 end
 
-Notify = function (msg)
+Notify = function(msg)
     vim.notify(msg, vim.log.levels.INFO)
 end
