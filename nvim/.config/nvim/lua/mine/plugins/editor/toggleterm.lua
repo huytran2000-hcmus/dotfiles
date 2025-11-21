@@ -10,12 +10,17 @@ return {
     keys = {
         { [[<C-\>]] },
         { [[<C-[>]], [[<C-\><C-n>]], mode = "t", ft = "toggleterm" },
-        { [[<leader><c-\><c-\>]], function()
-            set_opfunc(function(motion_type)
-                require("toggleterm").send_lines_to_terminal(motion_type, false, { args = vim.v.count })
-            end)
-            vim.api.nvim_feedkeys("g@_", "n", false)
-        end }
+        {
+            [[<leader><c-\>]],
+            function()
+                set_opfunc(function(motion_type)
+                    require("toggleterm").send_lines_to_terminal(motion_type, false, { args = vim.v.count })
+                end
+                )
+                vim.api.nvim_feedkeys("g@", "n", false)
+            end,
+            mode = { "n", "v" }
+        }
     },
     opts = {
         open_mapping = [[<C-\>]],
