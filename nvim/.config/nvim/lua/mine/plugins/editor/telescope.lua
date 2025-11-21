@@ -137,7 +137,7 @@ return {
             {
                 "<leader>fd",
                 function() require("telescope.builtin").diagnostics() end,
-                desc = "Fuzzy find old files"
+                desc = "Fuzzy find diagnostics"
             },
             {
                 "<leader>fo",

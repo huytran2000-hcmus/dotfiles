@@ -6,6 +6,7 @@ return {
     end,
     opts = {
         suppressed_dirs = { "~/", "~/Downloads" },
+        close_filetypes_on_save = { "toggleterm", "checkhealth" },
         log_level = "error",
     },
 }
