@@ -1,7 +1,21 @@
+local set_opfunc = vim.fn[vim.api.nvim_exec([[
+  func s:set_opfunc(val)
+    let &opfunc = a:val
+  endfunc
+  echon get(function('s:set_opfunc'), 'name')
+]], true)]
+
 return {
     "akinsho/toggleterm.nvim",
     keys = {
-        { [[<C-\>]] }
+        { [[<C-\>]] },
+        { [[<C-[>]], [[<C-\><C-n>]], mode = "t", ft = "toggleterm" },
+        { [[<leader><c-\><c-\>]], function()
+            set_opfunc(function(motion_type)
+                require("toggleterm").send_lines_to_terminal(motion_type, false, { args = vim.v.count })
+            end)
+            vim.api.nvim_feedkeys("g@_", "n", false)
+        end }
     },
     opts = {
         open_mapping = [[<C-\>]],
