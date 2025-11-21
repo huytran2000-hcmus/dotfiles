@@ -26,7 +26,8 @@ M.icons = {
         Struct = "",
         Event = "",
         Operator = "󰆕",
-        TypeParameter = ""
+        TypeParameter = "",
+        Copilot = "",
     },
     lsp_symbol = {
         File = '󰈙 ',

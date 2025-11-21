@@ -53,7 +53,16 @@ return {
             max_item_count = maximum items for a source
             --]]
             sources = {
-                { name = "nvim_lsp",                priority = 100, keyword_length = 3, max_item_count = 10 },
+                {
+                    name = "nvim_lsp",
+                    priority = 100,
+                    keyword_length = 2,
+                    max_item_count = 10,
+                    entry_filter = function(entry, ctx)
+                        return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
+                    end
+                },
+                { name = "copilot",                 priority = 10 },
                 { name = "nvim_lsp_signature_help", priority = 5 },
                 { name = "luasnip",                 priority = 5 },
                 { name = "nvim_lua",                priority = 3 },
