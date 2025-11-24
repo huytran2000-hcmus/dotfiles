@@ -31,7 +31,6 @@ return {
                 has_cmp and cmp_nvim_lsp.default_capabilities() or {}
             )
 
-
             require("mason").setup()
             local have_mason, mlsp = pcall(require, "mason-lspconfig")
             local available_servers = have_mason and

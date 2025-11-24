@@ -62,12 +62,12 @@ return {
                         return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
                     end
                 },
-                { name = "copilot",                 priority = 10 },
-                { name = "nvim_lsp_signature_help", priority = 5 },
-                { name = "luasnip",                 priority = 5 },
-                { name = "nvim_lua",                priority = 3 },
-                { name = "buffer",                  priority = 2 },
-                { name = "path",                    priority = 1 },
+                { name = "copilot",                 priority = 10, keyword_length = 2 },
+                { name = "nvim_lsp_signature_help", priority = 5,  keyword_length = 2 },
+                { name = "luasnip",                 priority = 5,  keyword_length = 2 },
+                { name = "nvim_lua",                priority = 3,  keyword_length = 2 },
+                { name = "buffer",                  priority = 2,  keyword_length = 2 },
+                { name = "path",                    priority = 1,  keyword_length = 2 },
             },
             snippet = {
                 expand = function(args)
