@@ -55,7 +55,7 @@ return {
             sources = {
                 {
                     name = "nvim_lsp",
-                    priority = 100,
+                    priority = 15,
                     keyword_length = 2,
                     max_item_count = 10,
                     entry_filter = function(entry, ctx)
@@ -68,6 +68,24 @@ return {
                 { name = "nvim_lua",                priority = 3,  keyword_length = 2 },
                 { name = "buffer",                  priority = 2,  keyword_length = 2 },
                 { name = "path",                    priority = 1,  keyword_length = 2 },
+            },
+            sorting = {
+                priority_weight = 2,
+                comparators = {
+                    require("copilot_cmp.comparators").prioritize,
+
+                    -- Below is the default comparitor list and order for nvim-cmp
+                    cmp.config.compare.offset,
+                    -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+                    cmp.config.compare.exact,
+                    cmp.config.compare.score,
+                    cmp.config.compare.recently_used,
+                    cmp.config.compare.locality,
+                    cmp.config.compare.kind,
+                    cmp.config.compare.sort_text,
+                    cmp.config.compare.length,
+                    cmp.config.compare.order,
+                },
             },
             snippet = {
                 expand = function(args)
