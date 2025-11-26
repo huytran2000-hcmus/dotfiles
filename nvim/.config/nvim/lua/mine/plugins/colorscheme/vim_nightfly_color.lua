@@ -1,9 +1,9 @@
 return {
     "bluz71/vim-nightfly-colors",
     name = "nightfly",
-    lazy = false,
+    lazy = true,
     priority = 1000,
-    init = function()
+    config = function()
         vim.g.nightflyVirtualTextColor = true
         vim.g.nightflyUndercurls = false
         vim.g.nightflyWinSeparator = 2
@@ -11,5 +11,6 @@ return {
         vim.api.nvim_create_autocmd("UIEnter", {
             command = "colorscheme nightfly"
         })
-    end
+    end,
+
 }
