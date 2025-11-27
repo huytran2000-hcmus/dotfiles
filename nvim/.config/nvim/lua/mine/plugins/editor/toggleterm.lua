@@ -38,6 +38,7 @@ return {
         --     border = "curved",
         --     winblend = 3,
         -- },
+        direction = "tab",
         winbar = {
             enabled = true,
         }
