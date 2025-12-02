@@ -5,11 +5,20 @@ return {
         { "j", "v:count == 0 ? 'gj' : 'j'", expr = true },
         { "k", "v:count == 0 ? 'gk' : 'k'", expr = true }
     },
-    opts = function()
-        local opts = require("hardtime.config").config
-        table.insert(opts["disabled_filetypes"], "dbui")
-        opts["disable_mouse"] = false
-
-        return opts
-    end,
+    opts = {
+        max_time = 3000,
+        disabled_filetypes = {
+            dbui = true,
+        },
+    }
+    -- opts = function()
+    --     local opts = require("hardtime.config").config
+    --     opts['max_time'] = 2000
+    --     table.insert(opts["disabled_filetypes"], "dbui")
+    --     opts["disable_mouse"] = false
+    --     P(opts)
+    --
+    --
+    --     return opts
+    -- end,
 }
