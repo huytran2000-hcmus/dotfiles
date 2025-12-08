@@ -1,10 +1,7 @@
 return {
     "m4xshen/hardtime.nvim",
+    lazy = false,
     dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-    keys = {
-        { "j", "v:count == 0 ? 'gj' : 'j'", expr = true },
-        { "k", "v:count == 0 ? 'gk' : 'k'", expr = true }
-    },
     opts = {
         max_time = 3000,
         disabled_filetypes = {
