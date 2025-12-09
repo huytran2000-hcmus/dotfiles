@@ -6,7 +6,7 @@ return {
     end,
     opts = {
         suppressed_dirs = { "~/", "~/Downloads" },
-        close_filetypes_on_save = { "toggleterm", "checkhealth" },
+        close_filetypes_on_save = { "toggleterm", "checkhealth", "lazygit" },
         log_level = "error",
     },
 }

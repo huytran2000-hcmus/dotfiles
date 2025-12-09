@@ -44,7 +44,6 @@ NNOREMAP("<leader>qd", ":cclo<CR>", { desc = "Close quickfix list" })
 NNOREMAP("<Esc>", "<cmd>nohls<CR><Esc>", { desc = "Clear search and escape" })
 NNOREMAP("Q", "q", { desc = "Remap macro" })
 NNOREMAP("q", "<nop>", { desc = "Unset q" })
-TNOREMAP("<Esc>", "<C-\\><C-n>")
 NNOREMAP("<leader>cp", ":let @*=expand('%:p')<CR>", {
     desc = "Copy current file path",
     silent = true,

@@ -79,4 +79,4 @@ augroup netrw_mapping
 augroup END
 
 " Escape term mode
-tnoremap <Esc><Esc> <C-\><C-n>
+tnoremap <Esc> <C-\><C-n>

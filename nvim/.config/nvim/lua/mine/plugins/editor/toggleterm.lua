@@ -5,6 +5,7 @@ local set_opfunc = vim.fn[vim.api.nvim_exec([[
   echon get(function('s:set_opfunc'), 'name')
 ]], true)]
 
+
 return {
     "akinsho/toggleterm.nvim",
     keys = {
@@ -20,7 +21,7 @@ return {
                 vim.api.nvim_feedkeys("g@", "n", false)
             end,
             mode = { "n", "v" }
-        }
+        },
     },
     opts = {
         open_mapping = [[<C-\>]],
