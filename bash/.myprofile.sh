@@ -8,7 +8,7 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
 
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
-export PATH=$PATH:~/.local/share/nvim/mason
+export PATH=$PATH:~/.local/share/nvim/mason/bin
 
 export GOPATH=$HOME/go
 PATH=$GOPATH/bin:$PATH
