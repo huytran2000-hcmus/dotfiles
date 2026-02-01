@@ -49,6 +49,11 @@ NNOREMAP("<leader>cp", ":let @*=expand('%:p')<CR>", {
     silent = true,
 })
 
+NNOREMAP("<leader>cd", ":let @+ = expand('%:p:h')<CR>", {
+    desc = "Copy current file directory",
+    silent = true,
+})
+
 -- Diagnostic
 NNOREMAP("<leader>k", vim.diagnostic.open_float, { desc = "Open line diagnostic" })
 NNOREMAP("[d", vim.diagnostic.goto_prev, { desc = "Go to prev diagnostic" })
