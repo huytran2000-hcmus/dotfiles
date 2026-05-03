@@ -8,7 +8,7 @@ return {
     end,
     opts = {
         plugins = {
-            registers = false,
+            registers = true,
         }
     },
     config = function(_, opts)
@@ -19,6 +19,7 @@ return {
             { "<leader>d",  group = "debug" },
             { "<leader>f",  group = "fuzzy" },
             { "<leader>fg", group = "git" },
+            { "<leader>m",  group = "marks" },
             { "<leader>q",  group = "quickfix" },
             { "<leader>s",  group = "wkspace" },
             { "<leader>t",  group = "toggle" },
