@@ -54,6 +54,11 @@ NNOREMAP("<leader>cd", ":let @+ = expand('%:p:h')<CR>", {
     silent = true,
 })
 
+NNOREMAP("<leader>bo", ":%bd|e#|bd#<CR>", {
+    desc = "Delete all buffer except the current one",
+    silent = true,
+})
+
 -- Diagnostic
 NNOREMAP("<leader>k", vim.diagnostic.open_float, { desc = "Open line diagnostic" })
 NNOREMAP("[d", vim.diagnostic.goto_prev, { desc = "Go to prev diagnostic" })
