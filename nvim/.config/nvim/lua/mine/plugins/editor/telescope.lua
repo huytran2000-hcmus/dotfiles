@@ -12,7 +12,7 @@ local opts = function()
                 num_pickers = 5,
             },
             preview = {
-                filesize_limit = 0.5,
+                filesize_limit = 1,
             },
             mappings = {
                 i = {

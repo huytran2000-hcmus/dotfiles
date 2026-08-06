@@ -37,6 +37,8 @@ vim.opt.showmode = false
 
 vim.opt.autowriteall = true
 
+vim.opt.fixendofline = false
+
 vim.filetype.add({
     extension = {
         gohtml = "html",

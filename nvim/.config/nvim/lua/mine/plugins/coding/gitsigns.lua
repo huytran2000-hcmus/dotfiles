@@ -40,7 +40,7 @@ return {
         sign_priority                = 6,
         update_debounce              = 100,
         status_formatter             = nil, -- Use default
-        max_file_length              = 10000,
+        max_file_length              = 20000,
         preview_config               = {
             -- Options passed to nvim_open_win
             style = 'minimal',

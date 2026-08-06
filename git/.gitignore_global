@@ -10,11 +10,8 @@ go.work*
 "
 '
 .cursorrules
-CLAUDE.md
-CLAUDE.local.md
-.github/copilot-instructions.md
-.instructions.md
-AGENTS.md
-GEMINI.md
-.geminiignore
-avante.md
+
+**/.claude/settings.local.json
+opencode.jsonc
+opencode.json
+gdb/

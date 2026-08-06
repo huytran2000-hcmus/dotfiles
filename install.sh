@@ -31,7 +31,6 @@ nix-env -iA nixpkgs.jq
 nix-env -iA nixpkgs.tree
 nix-env -iA nixpkgs.mkcert
 nix-env -iA nixpkgs.nss_latest
-nix-env -iA nixpkgs.nodejs_24
 
 stow -d ~/.dotfiles -t ~ git
 stow -d ~/.dotfiles -t ~ nvim

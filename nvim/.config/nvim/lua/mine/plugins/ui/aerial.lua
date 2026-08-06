@@ -39,7 +39,8 @@ return {
         highlight_closest = true,
         highlight_on_hover = true,
         show_guides = true,
-        icons = require(PREFIX .. "config").icons.lsp_symbol
+        icons = require(PREFIX .. "config").icons.lsp_symbol,
+        disable_max_lines = 20000,
     },
     config       = function(_, opts)
         require("aerial").setup(opts)
