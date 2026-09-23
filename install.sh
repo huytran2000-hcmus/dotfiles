@@ -1,11 +1,20 @@
 #. /home/huy/.nix-profile/etc/profile.d/nix.sh install nix
-sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --daemon
+if [ ! -e /nix/var/nix/profiles/default/bin/nix ]; then
+	sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --daemon
+fi
 # . /home/huy/.nix-profile/etc/profile.d/nix.sh
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
 	. '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
+
+if ! command -v nix-env >/dev/null; then
+	echo "Nix is not available (install failed?). Fix it and rerun install.sh." >&2
+	return 1 2>/dev/null || exit 1
+fi
+
+OS=$(uname -s)
 
 [ ! -d ~/.setup_backup ] && mkdir ~/.setup_backup && mv ~/.bashrc ~/.profile ~/.setup_backup
 
@@ -15,7 +24,7 @@ nix-env -iA nixpkgs.git
 nix-env -iA nixpkgs.stow
 nix-env -iA nixpkgs.ripgrep
 nix-env -iA nixpkgs.fd
-nix-env -iA nixpkgs.neovim
+nix-env -f https://github.com/NixOS/nixpkgs/archive/b6018f87da91d19d0ab4cf979885689b469cdd41.tar.gz -iA neovim
 nix-env -iA nixpkgs.glow
 nix-env -iA nixpkgs.fontconfig
 nix-env -iA nixpkgs.unzip
@@ -23,7 +32,9 @@ nix-env -iA nixpkgs.curl
 nix-env -iA nixpkgs.gnutar
 nix-env -iA nixpkgs.gzip
 nix-env -iA nixpkgs.wget
-nix-env -iA nixpkgs.gcc
+if [ "$OS" != "Darwin" ] && ! command -v cc >/dev/null; then
+	nix-env -iA nixpkgs.gcc
+fi
 nix-env -iA nixpkgs.gnumake
 nix-env -iA nixpkgs.direnv
 nix-env -iA nixpkgs.tldr
@@ -31,6 +42,8 @@ nix-env -iA nixpkgs.jq
 nix-env -iA nixpkgs.tree
 nix-env -iA nixpkgs.mkcert
 nix-env -iA nixpkgs.nss_latest
+nix-env -iA nixpkgs.fzf
+nix-env -iA nixpkgs.go
 
 stow -d ~/.dotfiles -t ~ git
 stow -d ~/.dotfiles -t ~ nvim
@@ -40,19 +53,15 @@ stow -d ~/.dotfiles -t ~ psql
 stow -d ~/.dotfiles -t ~ ripgrep
 stow -d ~/.dotfiles -t ~ nix
 
-if [ ! -d ~/.fzf ]; then
-	git clone --filter=blob:none https://github.com/junegunn/fzf.git ~/.fzf
+wget -q -O /tmp/Hack.zip https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip
+if [ "$OS" = "Darwin" ]; then
+	unzip -o -q /tmp/Hack.zip -d ~/Library/Fonts/
 else
-	cd ~/.fzf && git pull && ~/.fzf/install
-	pwd
-	cd -
+	mkdir -p ~/.local/share/fonts
+	unzip -o -q /tmp/Hack.zip -d ~/.local/share/fonts/
+	fc-cache -f -v
 fi
-~/.fzf/install
-
-mkdir -p ~/.local/share/fonts && sudo wget -q -O /tmp/Hack.zip https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip &&
-	unzip -o -q /tmp/Hack.zip -d ~/.local/share/fonts/ && sudo rm -rf /tmp/Hack.zip /tmp/Hack
-
-fc-cache -f -v
+rm -rf /tmp/Hack.zip
 
 [ ! -d ~/.kubectl ] && mkdir ~/.kubectl
 stow -d ~/.dotfiles -t ~/.kubectl kubectl

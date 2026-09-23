@@ -1,3 +1,4 @@
 nvim/.config/*
 !nvim/.config/nvim/
 !nvim/.config/nvim/**
+nvim/.config/nvim/spell/
