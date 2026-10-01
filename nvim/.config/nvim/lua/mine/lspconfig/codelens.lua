@@ -1,13 +1,10 @@
 local M = {}
 
 function M.on_attach(client, bufnr)
-    if not client:supports_method("textDocument/inlayHint") then
+    if not client:supports_method("textDocument/codeLens") then
         return
     end
-    vim.api.nvim_create_autocmd({ "LspAttach", "BufEnter", "CursorHold", "InsertLeave" }, {
-        buffer = bufnr,
-        callback = vim.lsp.codelens.refresh,
-    })
+    vim.lsp.codelens.enable(true, { bufnr = bufnr })
 end
 
 return M

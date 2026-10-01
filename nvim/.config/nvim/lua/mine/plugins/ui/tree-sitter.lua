@@ -1,47 +1,40 @@
 -- AST for better syntax: highlight
+-- nvim-treesitter `main` branch: only installs parsers/queries. Highlighting,
+-- folding and incremental selection (visual `an` / `in`) are built into Neovim 0.12.
+-- Parsers are compiled with the `tree-sitter` CLI (installed by install.sh).
+local parsers = {
+    "go",
+    "lua",
+    "ruby",
+    "vimdoc",
+    "vim",
+    "python",
+    "javascript",
+    "sql",
+    "gomod",
+    "gowork",
+    "gosum",
+}
+
 return {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPost", "BufNewFile" },
+    branch = "main",
+    lazy = false, -- main branch does not support lazy-loading
+    build = ":TSUpdate",
     init = function()
         vim.o.foldmethod = 'expr'
         vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
         vim.o.foldenable = false
     end,
-    build = ":TSUpdate",
-    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-    opts = {
-        ensure_installed = {
-            "go",
-            "lua",
-            "ruby",
-            "vimdoc",
-            "vim",
-            "python",
-            "javascript",
-            "sql",
-            "gomod",
-            "gowork",
-            "gosum",
-        },
-        sync_install = false,
-        auto_install = false, -- Only enable if have treesiter CLI
-        ignore_install = {},
-        highlight = {
-            enable = true,
-            disable = {}, -- List of language that will be disable
-            additional_vim_regex_highlighting = false,
-        },
-        incremental_selection = {
-            enable = true,
-            keymaps = {
-                init_selection = "<C-Space>", -- set to `false` to disable one of the mappings
-                node_incremental = "<C-Space>",
-                scope_incremental = false,
-                node_decremental = "<BS>",
-            },
-        },
-    },
-    config = function(_, opts)
-        require("nvim-treesitter.configs").setup(opts)
+    config = function()
+        require("nvim-treesitter").install(parsers)
+
+        vim.api.nvim_create_autocmd("FileType", {
+            group = vim.api.nvim_create_augroup("mine_treesitter_start", { clear = true }),
+            callback = function(args)
+                -- Start highlighting when a parser exists for this filetype; ignore otherwise
+                pcall(vim.treesitter.start, args.buf)
+            end,
+        })
     end
 }

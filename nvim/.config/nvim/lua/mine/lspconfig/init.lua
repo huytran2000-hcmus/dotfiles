@@ -1,13 +1,10 @@
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-    vim.lsp.handlers.hover, {
-        border = "rounded",
-    }
-)
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-    vim.lsp.handlers.signatureHelp, {
-        border = "rounded",
-    }
-)
+-- Rounded borders for LSP hover/signature only (global 'winborder' would also hit plugin floats)
+for _, name in ipairs({ "hover", "signature_help" }) do
+    local orig = vim.lsp.buf[name]
+    vim.lsp.buf[name] = function(opts)
+        return orig(vim.tbl_extend("keep", opts or {}, { border = "rounded" }))
+    end
+end
 local on_attachs = {}
 on_attachs[#on_attachs + 1] = require(PREFIX .. "lspconfig.core").on_attach
 on_attachs[#on_attachs + 1] = require(PREFIX .. "lspconfig.autoformat").on_attach

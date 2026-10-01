@@ -9,7 +9,7 @@ function M.get_root(buf)
 
     local bufpath = vim.api.nvim_buf_get_name(bufnr)
     ---@type string?
-    bufpath = bufpath ~= "" and vim.loop.fs_realpath(bufpath) or nil
+    bufpath = bufpath ~= "" and vim.uv.fs_realpath(bufpath) or nil
     local roots = {}
     if bufpath then
         roots = M.dectect_lsp(bufpath, bufnr)
@@ -17,9 +17,9 @@ function M.get_root(buf)
 
     local root = roots and roots[1]
     if not root then
-        bufpath = bufpath and vim.fs.dirname(bufpath) or vim.loop.cwd()
+        bufpath = bufpath and vim.fs.dirname(bufpath) or vim.uv.cwd()
         root = vim.fs.find(M.root_patterns, { path = bufpath, upward = true })[1]
-        root = root and vim.fs.dirname(root) or vim.loop.cwd()
+        root = root and vim.fs.dirname(root) or vim.uv.cwd()
     end
     return root
 end

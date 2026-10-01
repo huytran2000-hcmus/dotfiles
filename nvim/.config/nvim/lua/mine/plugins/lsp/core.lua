@@ -16,9 +16,6 @@ return {
                 "hrsh7th/cmp-nvim-lsp",
                 dependencies = "hrsh7th/cmp-nvim-lsp-signature-help",
             },
-            {
-                "folke/neodev.nvim",
-            },
         },
         config = function(_, opts)
             local cfg = require(PREFIX .. "lspconfig")
@@ -62,8 +59,17 @@ return {
                     automatic_enable = { exclude = mason_excludes },
                 })
             end
-            require("neodev").setup()
         end,
+    },
+    {
+        -- Neovim Lua API types for lua_ls (replaces archived neodev.nvim)
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
     },
     {
         "mason-org/mason.nvim",

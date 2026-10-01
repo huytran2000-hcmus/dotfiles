@@ -24,7 +24,8 @@ nix-env -iA nixpkgs.git
 nix-env -iA nixpkgs.stow
 nix-env -iA nixpkgs.ripgrep
 nix-env -iA nixpkgs.fd
-nix-env -f https://github.com/NixOS/nixpkgs/archive/b6018f87da91d19d0ab4cf979885689b469cdd41.tar.gz -iA neovim
+nix-env -iA nixpkgs.neovim
+nix-env -iA nixpkgs.tree-sitter
 nix-env -iA nixpkgs.glow
 nix-env -iA nixpkgs.fontconfig
 nix-env -iA nixpkgs.unzip

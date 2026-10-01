@@ -78,7 +78,7 @@ return {
     {
         -- https://github.com/nvim-telescope/telescope.nvim
         "nvim-telescope/telescope.nvim",
-        branch = "0.1.x",
+        branch = "master",
         cmd = "Telescope",
         init = function()
             vim.cmd.cabbrev("tl", "Telescope")

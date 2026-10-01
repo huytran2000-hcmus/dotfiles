@@ -1,11 +1,5 @@
 local icons = require(PREFIX .. "config").icons.diagnostic
-for name, text in pairs(icons) do
-    vim.fn.sign_define(name, {
-        texthl = name,
-        text = text,
-        numhl = name
-    })
-end
+local severity = vim.diagnostic.severity
 
 vim.diagnostic.config({
     virtual_text = { spacing = 4, prefix = "●", source = "if_many" },
@@ -15,12 +9,18 @@ vim.diagnostic.config({
     float = {
         border = "rounded",
     },
-    -- signs = {
-    --     texthl = {
-    --         [vim.diagnostic.severity.ERROR] = icons.DiagnosticSignError,
-    --         [vim.diagnostic.severity.WARN] = icons.iagnosticSignWarn,
-    --         [vim.diagnostic.severity.HINT] = icons.DiagnosticSignHint,
-    --         [vim.diagnostic.severity.INFO] = icons.DiagnosticSignInfo,
-    --     },
-    -- }
+    signs = {
+        text = {
+            [severity.ERROR] = icons.DiagnosticSignError,
+            [severity.WARN] = icons.DiagnosticSignWarn,
+            [severity.HINT] = icons.DiagnosticSignHint,
+            [severity.INFO] = icons.DiagnosticSignInfo,
+        },
+        numhl = {
+            [severity.ERROR] = "DiagnosticSignError",
+            [severity.WARN] = "DiagnosticSignWarn",
+            [severity.HINT] = "DiagnosticSignHint",
+            [severity.INFO] = "DiagnosticSignInfo",
+        },
+    },
 })
