@@ -1,0 +1,65 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "anthropic/claude-sonnet-5",
+  "default_agent": "orchestrator",
+  "instructions": [
+    "CLAUDE.md",
+    "~/.config/opencode/rules/mcporter-discovery.md"
+  ],
+  "plugins": [
+    "@ex-machina/opencode-anthropic-auth@next",
+    "@tarquinen/opencode-dcp@latest",
+    "oh-my-opencode-slim"
+  ],
+  "permissions": [
+    {
+      "action": "external_directory",
+      "resource": "/tmp/**",
+      "effect": "allow"
+    },
+    {
+      "action": "external_directory",
+      "resource": "/private/tmp/**",
+      "effect": "allow"
+    },
+    {
+      "action": "external_directory",
+      "resource": "~/.config/opencode/skills/**",
+      "effect": "allow"
+    },
+    {
+      "action": "external_directory",
+      "resource": "~/Documents/repos/vibe-coder/skills/**",
+      "effect": "allow"
+    },
+    {
+      "action": "external_directory",
+      "resource": "~/.config/horcrux/**",
+      "effect": "allow"
+    },
+    {
+      "action": "external_directory",
+      "resource": "~/daily-report",
+      "effect": "allow"
+    },
+    {
+      "action": "external_directory",
+      "resource": "~/daily-report/**",
+      "effect": "allow"
+    },
+    {
+      "action": "external_directory",
+      "resource": "~/.mcporter/**",
+      "effect": "allow"
+    }
+  ],
+  "agents": {
+    "explore": {
+      "disabled": true,
+      "model": "anthropic/claude-haiku-4-5-20251001"
+    },
+    "general": {
+      "disabled": true
+    }
+  }
+}

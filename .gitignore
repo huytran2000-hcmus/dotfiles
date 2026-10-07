@@ -2,3 +2,12 @@ nvim/.config/*
 !nvim/.config/nvim/
 !nvim/.config/nvim/**
 nvim/.config/nvim/spell/
+
+opencode/.config/opencode/service.json
+opencode/.config/opencode/logs/
+opencode/.config/opencode/skills/
+opencode/.config/opencode/node_modules/
+opencode/.config/opencode/package*.json
+opencode/.config/opencode/bun.lock
+opencode/.config/opencode/*.bak
+!opencode/.config/opencode/opencode.json

@@ -4,7 +4,7 @@ Personal dotfiles, deployed with GNU Stow. There is no build, test, or CI; chang
 
 ## Layout and deployment
 
-- Each top-level dir (`bash`, `git`, `nvim`, `vim`, `psql`, `ripgrep`, `nix`) is a stow package that mirrors `$HOME`. For example, `nvim/.config/nvim` is symlinked to `~/.config/nvim`, so edits here are live immediately.
+- Each top-level dir (`bash`, `git`, `nvim`, `vim`, `psql`, `ripgrep`, `nix`, `opencode`) is a stow package that mirrors `$HOME`. For example, `nvim/.config/nvim` is symlinked to `~/.config/nvim`, so edits here are live immediately.
 - `kubectl` is the exception: `install.sh` stows it into `~/.kubectl`, not `~`.
 - The repo must live at `~/.dotfiles` because `install.sh` hardcodes `stow -d ~/.dotfiles`.
 - A new top-level package needs its own `stow -d ~/.dotfiles -t ~ <pkg>` line in `install.sh`. A new file inside an existing package needs a re-stow (`stow -R -d ~/.dotfiles -t ~ <pkg>`) unless its parent dir is already a symlink.
@@ -27,6 +27,13 @@ Personal dotfiles, deployed with GNU Stow. There is no build, test, or CI; chang
 - Commit `lazy-lock.json` along with any plugin add/remove/update.
 - `lua/.luarc.json` holds stale Linux paths (`/home/huy/...`). Ignore it.
 - `nvim` comes from `~/.nix-profile/bin` and may be missing from a non-interactive agent shell. For a quick load check, run `~/.nix-profile/bin/nvim --headless +qa` and look for errors. Ask before running `Lazy sync`/`Lazy update`, because they change the lockfile.
+
+## OpenCode (`opencode/.config/opencode`)
+
+- Stowed with `--no-folding`, so `~/.config/opencode` stays a real directory and only the tracked files are symlinked into it. Re-stow with `stow -R --no-folding -d ~/.dotfiles -t ~ opencode` after adding a file.
+- Tracked: `opencode.json`, `cli.json`, `dcp.jsonc`, `oh-my-opencode-slim.json`, and `AGENTS.md`. The global `AGENTS.md` is the only source for general agent rules (style, testing, questions); don't duplicate them into `rules/`.
+- Work-specific or secret files stay as untracked files in `~/.config/opencode` and must not be added here: `agent/*` (symlinks into a work repo), `commands/`, `rules/mcporter-discovery.md`, `service.json` (contains a password), `skills/`, `logs/`, and `*.bak`. `opencode.json` loads `rules/mcporter-discovery.md` from its local path via `instructions`.
+- OpenChamber config (`~/.config/openchamber`) is not managed here; its `settings.json` holds keys.
 
 ## No credentials in the repo
 

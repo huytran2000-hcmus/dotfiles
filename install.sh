@@ -53,6 +53,7 @@ stow -d ~/.dotfiles -t ~ vim
 stow -d ~/.dotfiles -t ~ psql
 stow -d ~/.dotfiles -t ~ ripgrep
 stow -d ~/.dotfiles -t ~ nix
+stow --no-folding -d ~/.dotfiles -t ~ opencode
 
 wget -q -O /tmp/Hack.zip https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip
 if [ "$OS" = "Darwin" ]; then

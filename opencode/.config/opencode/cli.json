@@ -1,0 +1,23 @@
+{
+  "$schema": "https://opencode.ai/v2/cli.json",
+  "theme": {
+    "name": "opencode"
+  },
+  "keybinds": {
+    "session.child.next": "shift+right",
+    "session.child.previous": "shift+left",
+    "session.tab.close": "<leader>w,alt+w"
+  },
+  "plugins": [
+    "oh-my-opencode-slim"
+  ],
+  "diffs": {
+    "wrap": "word"
+  },
+  "session": {
+    "sidebar": "auto",
+    "scrollbar": false,
+    "thinking": "show"
+  },
+  "animations": true
+}
