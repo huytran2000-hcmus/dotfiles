@@ -41,18 +41,45 @@ local function run_main()
     dap.continue()
 end
 
+-- dap.run_last() reuses the previous config as-is, so override noDebug on the rerun
+local function run_last_test(no_debug)
+    local dap = require("dap")
+    local key = "mine.java_run_last"
+    local applied = false
+    dap.listeners.on_config[key] = function(config)
+        dap.listeners.on_config[key] = nil
+        applied = true
+        if config.request ~= "launch" then
+            return config
+        end
+        return vim.tbl_extend("force", config, { noDebug = no_debug })
+    end
+    dap.run_last()
+    -- Nothing to rerun: drop the listener so it doesn't leak into the next run
+    if not applied and not dap.session() then
+        dap.listeners.on_config[key] = nil
+    end
+end
+
 local function set_keymaps(bufnr)
     local jdtls = require("jdtls")
     local function opts(desc)
-        return { noremap = true, silent = true, buffer = bufnr, desc = desc }
+        return { silent = true, buffer = bufnr, desc = desc }
     end
 
     NNOREMAP("<leader>co", jdtls.organize_imports, opts("Organize imports"))
     NNOREMAP("gs", jdtls.super_implementation, opts("Go to super implementation"))
     NNOREMAP("gS", function() require("jdtls.tests").goto_subjects() end, opts("Go to test subject"))
     NNOREMAP("<leader>dm", run_main, opts("Run main class"))
+    -- Override the global neotest keymaps (plugins/coding/neotest.lua) in Java buffers
     NNOREMAP("<leader>tt", function() require("jdtls.dap").test_class() end, opts("Run test class"))
     NNOREMAP("<leader>tT", function() require("jdtls.dap").pick_test() end, opts("Pick test to run"))
+    NNOREMAP("<leader>tr", function()
+        require("jdtls.dap").test_nearest_method({ config_overrides = { noDebug = true } })
+    end, opts("Run nearest test"))
+    NNOREMAP("<leader>td", function() require("jdtls.dap").test_nearest_method() end, opts("Debug nearest test"))
+    NNOREMAP("<leader>tl", function() run_last_test(true) end, opts("Run last test"))
+    NNOREMAP("<leader>tD", function() run_last_test(false) end, opts("Debug last test"))
 end
 
 local function setup_dap()

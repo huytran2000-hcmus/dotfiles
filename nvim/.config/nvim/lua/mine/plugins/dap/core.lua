@@ -19,52 +19,14 @@ return {
             { "<leader>dui", function() require("dapui").toggle() end,                                 desc = "Debug: Toggle UI" },
             { "<leader>bp",  function() require("persistent-breakpoints.api").toggle_breakpoint() end, desc = "Toggle Breadpoint" },
             { "<leader>B",   function() require("dap").clear_breakpoints() end,                        desc = "Clear Breakpoint" },
-            {
-                "<leader>td",
-                function()
-                    if vim.bo.filetype == "java" then
-                        require("jdtls.dap").test_nearest_method()
-                        return
-                    end
-                    require(PREFIX .. "dapconfig.go_test").debug_test()
-                end,
-                desc = "Debug nearest test"
-            },
-            {
-                "<leader>tD",
-                function()
-                    if vim.bo.filetype == "java" then
-                        require("dap").run_last()
-                        return
-                    end
-                    require(PREFIX .. "dapconfig.go_test").debug_last_test()
-                end,
-                desc = "Debug last test"
-            },
-            {
-                "<leader>tr",
-                function()
-                    if vim.bo.filetype == "java" then
-                        require("jdtls.dap").test_nearest_method({ config_overrides = { noDebug = true } })
-                        return
-                    end
-                    require(PREFIX .. "dapconfig.go_test").debug_test({ noDebug = true })
-                end,
-                desc = "Run nearest test"
-            },
-            {
-                "<leader>tl",
-                function()
-                    if vim.bo.filetype == "java" then
-                        require("dap").run_last()
-                        return
-                    end
-                    require(PREFIX .. "dapconfig.go_test").debug_last_test({ noDebug = true })
-                end,
-                desc = "Run last test"
-            },
         },
         dependencies = {
+            {
+                -- https://github.com/leoluz/nvim-dap-go
+                -- Registers the `go` (delve) adapter and configurations; also used by neotest-golang
+                "leoluz/nvim-dap-go",
+                opts = {},
+            },
             {
                 "rcarriga/nvim-dap-ui",
                 dependencies = {
@@ -152,51 +114,8 @@ return {
                     numhl = "LspDiagnosticsSignInformation",
                 },
             },
-            adapters = {
-                go = {
-                    type = 'server',
-                    port = '${port}',
-                    executable = {
-                        command = 'dlv',
-                        args = { 'dap', '-l', '127.0.0.1:${port}' },
-                    }
-                }
-            },
-            debugees = {
-                go = {
-                    {
-                        type = "go",
-                        name = "Debug",
-                        request = "launch",
-                        program = "${file}",
-                        outputMode = "remote",
-                    },
-                    {
-                        type = "go",
-                        name = "Debug (go.mod)",
-                        request = "launch",
-                        program = "./${relativeFileDirname}",
-                        outputMode = "remote",
-                    },
-                    {
-                        type = "go",
-                        name = "Debug test", -- configuration for debugging test files
-                        request = "launch",
-                        mode = "test",
-                        program = "${file}",
-                        outputMode = "remote",
-                    },
-                    -- works with go.mod packages and sub packages
-                    {
-                        type = "go",
-                        name = "Debug test (go.mod)",
-                        request = "launch",
-                        mode = "test",
-                        program = "./${relativeFileDirname}",
-                        outputMode = "remote",
-                    }
-                }
-            }
+            adapters = {},
+            debugees = {},
         },
         config = function(_, opts)
             local dap = require("dap")
