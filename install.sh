@@ -45,8 +45,10 @@ nix-env -iA nixpkgs.mkcert
 nix-env -iA nixpkgs.nss_latest
 nix-env -iA nixpkgs.fzf
 nix-env -iA nixpkgs.go
-# Separate profile so it doesn't shadow the system java; only jdtls uses it
-nix-env -p ~/.local/state/nix/profiles/jdk21 -iA nixpkgs.jdk21
+# One nix profile per JDK; .myprofile.sh, project .envrc files and jdtls point at them
+for v in 8 11 17 21; do
+    nix-env -p ~/.local/state/nix/profiles/jdk$v -iA nixpkgs.jdk$v
+done
 
 stow -d ~/.dotfiles -t ~ git
 stow -d ~/.dotfiles -t ~ nvim

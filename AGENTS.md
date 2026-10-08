@@ -15,6 +15,7 @@ Personal dotfiles, deployed with GNU Stow. There is no build, test, or CI; chang
 
 - Shell files are hooked into the system rc files, not used in place of them: `.myprofile.sh` (env/PATH, both shells), `.myzshrc.sh` / `.mybashrc.sh` (per shell), both of which source `.sh_aliases.sh` and `.myshrc.sh`.
 - `.myshrc.sh` contains `bindkey -e`, which is zsh-only even though bash also sources the file.
+- JDKs 8/11/17/21 are nix profiles at `~/.local/state/nix/profiles/jdk<v>` (installed by `install.sh`). `.myprofile.sh` defaults `JAVA_HOME` to jdk17; projects override it in a direnv `.envrc`. `lspconfig/servers/jdtls.lua` hardcodes the same paths for jdtls (jdk21) and its runtimes.
 
 ## Neovim (`nvim/.config/nvim`)
 
