@@ -87,7 +87,7 @@ return {
                 desc = "Open nvim-tree at current file directory"
             },
             {
-                "<leader>te",
+                "<leader>ue",
                 function() require("nvim-tree.api").tree.toggle({ focus = false }) end,
                 desc = "Toggle without focus nvim-tree"
             },

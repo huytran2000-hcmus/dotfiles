@@ -82,7 +82,7 @@ function M.on_attach(client, bufnr)
     local group = AUGROUP("MyFormatting")
     if M.supports_format(client) then
         -- CLEAR_AUTOCMD({ group = group, buffer = bufnr })
-        NNOREMAP("<leader>tf", M.toggle, { desc = "Toggle format on save" })
+        NNOREMAP("<leader>uf", M.toggle, { desc = "Toggle format on save" })
         AUTOCMD("BufWritePre", {
             group = group,
             buffer = bufnr,

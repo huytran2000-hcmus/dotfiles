@@ -12,7 +12,7 @@ function M.on_attach(client, bufnr)
     end
     local group = AUGROUP("MyInlineHint")
     CLEAR_AUTOCMD({ group = group, buffer = bufnr })
-    NNOREMAP("<leader>ti", M.toggle, { desc = "Toggle inline hint" })
+    NNOREMAP("<leader>ui", M.toggle, { desc = "Toggle inline hint" })
     AUTOCMD("BufWritePre", {
         group = group,
         buffer = bufnr,

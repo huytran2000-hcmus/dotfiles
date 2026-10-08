@@ -19,8 +19,50 @@ return {
             { "<leader>dui", function() require("dapui").toggle() end,                                 desc = "Debug: Toggle UI" },
             { "<leader>bp",  function() require("persistent-breakpoints.api").toggle_breakpoint() end, desc = "Toggle Breadpoint" },
             { "<leader>B",   function() require("dap").clear_breakpoints() end,                        desc = "Clear Breakpoint" },
-            { "<leader>dt",  function() require(PREFIX .. "dapconfig.go_test").debug_test() end,       desc = "Run individual test" },
-            { "<leader>dlt", function() require(PREFIX .. "dapconfig.go_test").debug_last_test() end,  desc = "Run last individual test" },
+            {
+                "<leader>td",
+                function()
+                    if vim.bo.filetype == "java" then
+                        require("jdtls.dap").test_nearest_method()
+                        return
+                    end
+                    require(PREFIX .. "dapconfig.go_test").debug_test()
+                end,
+                desc = "Debug nearest test"
+            },
+            {
+                "<leader>tD",
+                function()
+                    if vim.bo.filetype == "java" then
+                        require("dap").run_last()
+                        return
+                    end
+                    require(PREFIX .. "dapconfig.go_test").debug_last_test()
+                end,
+                desc = "Debug last test"
+            },
+            {
+                "<leader>tr",
+                function()
+                    if vim.bo.filetype == "java" then
+                        require("jdtls.dap").test_nearest_method({ config_overrides = { noDebug = true } })
+                        return
+                    end
+                    require(PREFIX .. "dapconfig.go_test").debug_test({ noDebug = true })
+                end,
+                desc = "Run nearest test"
+            },
+            {
+                "<leader>tl",
+                function()
+                    if vim.bo.filetype == "java" then
+                        require("dap").run_last()
+                        return
+                    end
+                    require(PREFIX .. "dapconfig.go_test").debug_last_test({ noDebug = true })
+                end,
+                desc = "Run last test"
+            },
         },
         dependencies = {
             {

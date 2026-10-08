@@ -80,6 +80,8 @@ return {
                 "golangci-lint",
                 "codespell",
                 "delve",
+                "java-debug-adapter",
+                "java-test",
             }
         },
         ---@param opts MasonSettings | {ensure_installed: string[]}

@@ -14,6 +14,7 @@ local parsers = {
     "gomod",
     "gowork",
     "gosum",
+    "java",
 }
 
 return {

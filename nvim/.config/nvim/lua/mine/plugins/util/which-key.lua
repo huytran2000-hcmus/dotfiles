@@ -16,13 +16,15 @@ return {
         wk.setup(opts)
         wk.add({
             { "<leader>b",  group = "buffer" },
+            { "<leader>c",  group = "code" },
             { "<leader>d",  group = "debug" },
             { "<leader>f",  group = "fuzzy" },
             { "<leader>fg", group = "git" },
             { "<leader>m",  group = "marks" },
             { "<leader>q",  group = "quickfix" },
             { "<leader>s",  group = "wkspace" },
-            { "<leader>t",  group = "toggle" },
+            { "<leader>t",  group = "test" },
+            { "<leader>u",  group = "ui toggle" },
             { "<leader>w",  group = "window" },
             { "[",          group = "prev" },
             { "]",          group = "next" },

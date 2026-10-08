@@ -32,6 +32,8 @@ return {
         gopls = require(PREFIX .. "lspconfig.servers.gopls"),
         lua_ls = require(PREFIX .. "lspconfig.servers.lua_ls"),
         jsonls = require(PREFIX .. "lspconfig.servers.jsonls"),
+        -- Installed by mason; started by nvim-jdtls (plugins/coding/java.lua)
+        jdtls = {},
     },
 
 
@@ -46,5 +48,8 @@ return {
         -- end,
         -- Specify * to use this function as a fallback for any server
         -- ["*"] = function(server, opts) end,
+        jdtls = function()
+            return true -- avoid a second jdtls next to nvim-jdtls
+        end,
     },
 }

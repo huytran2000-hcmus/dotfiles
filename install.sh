@@ -45,6 +45,8 @@ nix-env -iA nixpkgs.mkcert
 nix-env -iA nixpkgs.nss_latest
 nix-env -iA nixpkgs.fzf
 nix-env -iA nixpkgs.go
+# Separate profile so it doesn't shadow the system java; only jdtls uses it
+nix-env -p ~/.local/state/nix/profiles/jdk21 -iA nixpkgs.jdk21
 
 stow -d ~/.dotfiles -t ~ git
 stow -d ~/.dotfiles -t ~ nvim
