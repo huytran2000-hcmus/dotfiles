@@ -10,20 +10,12 @@ function M.on_attach(client, bufnr)
     then
         vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
     end
-    local group = AUGROUP("MyInlineHint")
-    CLEAR_AUTOCMD({ group = group, buffer = bufnr })
     NNOREMAP("<leader>ui", M.toggle, { desc = "Toggle inline hint" })
-    AUTOCMD("BufWritePre", {
-        group = group,
-        buffer = bufnr,
-        callback = function()
-            M.toggle(bufnr)
-        end
-    })
 end
 
-function M.toggle(bufnr)
-    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(), { bufnr = bufnr })
+function M.toggle()
+    local bufnr = vim.api.nvim_get_current_buf()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr })
 end
 
 return M

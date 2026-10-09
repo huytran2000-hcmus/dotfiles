@@ -59,40 +59,26 @@ function M.format()
         --     return client.name ~= "null-ls"
         -- end
     })
-
-    vim.lsp.buf.code_action({
-        context = {
-            only = {
-                "source.organizeImports"
-            }
-        },
-        apply = true
-    })
 end
 
-function M.supports_format(client)
-    if client.server_capabilities and client.server_capabilities.documentFormattingProvider == false then
-        return false
-    end
-
-    return client:supports_method("textDocument/formatting") or client:supports_method("textDocument/rangeFormatting")
+-- Checked at save time, not attach time: some servers (e.g. jdtls) register formatting dynamically after attaching
+function M.supports_format(bufnr)
+    return #vim.lsp.get_clients({ bufnr = bufnr, method = "textDocument/formatting" }) > 0
 end
 
-function M.on_attach(client, bufnr)
+function M.on_attach(_, bufnr)
     local group = AUGROUP("MyFormatting")
-    if M.supports_format(client) then
-        -- CLEAR_AUTOCMD({ group = group, buffer = bufnr })
-        NNOREMAP("<leader>uf", M.toggle, { desc = "Toggle format on save" })
-        AUTOCMD("BufWritePre", {
-            group = group,
-            buffer = bufnr,
-            callback = function()
-                if M.enabled(bufnr) then
-                    M.format()
-                end
+    CLEAR_AUTOCMD({ group = group, buffer = bufnr })
+    NNOREMAP("<leader>uf", M.toggle, { desc = "Toggle format on save" })
+    AUTOCMD("BufWritePre", {
+        group = group,
+        buffer = bufnr,
+        callback = function()
+            if M.enabled(bufnr) and M.supports_format(bufnr) then
+                M.format()
             end
-        })
-    end
+        end
+    })
 end
 
 return M

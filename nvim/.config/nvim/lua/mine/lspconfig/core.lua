@@ -32,6 +32,9 @@ return {
         NNOREMAP("<space>rn", vim.lsp.buf.rename, vim.tbl_extend("force", bufopts, { desc = "Rename identifier" }))
         NNOREMAP("<space>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", bufopts, { desc = "Code action" }))
         NNOREMAP("<space>cl", vim.lsp.codelens.run, vim.tbl_extend("force", bufopts, { desc = "Code lens" }))
+        NNOREMAP("<space>co", function()
+            vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })
+        end, vim.tbl_extend("force", bufopts, { desc = "Organize imports" }))
         NNOREMAP("<space>fm", function()
             vim.lsp.buf.format { async = true }
         end, vim.tbl_extend("force", bufopts, { desc = "Format buffer" }))

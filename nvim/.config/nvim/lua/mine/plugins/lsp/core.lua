@@ -76,6 +76,7 @@ return {
         opts = {
             ensure_installed = {
                 "shfmt",
+                "goimports",
                 "goimports-reviser",
                 "golangci-lint",
                 "codespell",

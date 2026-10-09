@@ -19,6 +19,7 @@ return {
                 -- builtins.formatting.fixjson,
                 -- builtins.formatting.gofmt,
                 builtins.formatting.shfmt,
+                builtins.formatting.goimports,
                 -- builtins.formatting.goimports_reviser,
                 -- builtins.hover.dictionary,
                 builtins.diagnostics.golangci_lint,
