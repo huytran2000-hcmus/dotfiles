@@ -50,6 +50,9 @@ return {
             completion = {
                 completeopt = "menuone,preview,noselect,noinsert,longest"
             },
+            performance = {
+                max_view_entries = 12,
+            },
             --[[
             cmp can't work by itself. It need source engines to get suggestions
             name = source to work with cmp
@@ -67,18 +70,15 @@ return {
                         return require('cmp.types').lsp.CompletionItemKind[entry:get_kind()] ~= 'Text'
                     end
                 },
-                { name = "copilot",                 priority = 10, keyword_length = 2 },
                 { name = "nvim_lsp_signature_help", priority = 5,  keyword_length = 2 },
-                { name = "luasnip",                 priority = 5,  keyword_length = 2 },
-                { name = "nvim_lua",                priority = 3,  keyword_length = 2 },
-                { name = "buffer",                  priority = 2,  keyword_length = 2 },
-                { name = "path",                    priority = 1,  keyword_length = 2 },
+                { name = "luasnip",                 priority = 5,  keyword_length = 2, max_item_count = 5 },
+                { name = "nvim_lua",                priority = 3,  keyword_length = 2, max_item_count = 10 },
+                { name = "buffer",                  priority = 2,  keyword_length = 2, max_item_count = 5 },
+                { name = "path",                    priority = 1,  keyword_length = 2, max_item_count = 10 },
             },
             sorting = {
                 priority_weight = 2,
                 comparators = {
-                    require("copilot_cmp.comparators").prioritize,
-
                     -- Below is the default comparitor list and order for nvim-cmp
                     cmp.config.compare.offset,
                     -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
@@ -202,13 +202,13 @@ return {
         cmp.setup.cmdline({ '/', '?' }, {
             mapping = cmd_mappings,
             sources = {
-                { name = 'buffer', keyword_length = 3 }
+                { name = 'buffer', keyword_length = 3, max_item_count = 10 }
             }
         })
         cmp.setup.cmdline(':', {
             mapping = cmd_mappings,
             sources = cmp.config.sources({ -- cmdline source will not show when path source is available
-                { name = 'path' }
+                { name = 'path', max_item_count = 10 }
             }, {
                 { name = 'cmdline', keyword_length = 1, max_item_count = 10 },
             })
