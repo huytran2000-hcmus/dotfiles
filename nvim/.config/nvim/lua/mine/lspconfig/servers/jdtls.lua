@@ -1,4 +1,4 @@
--- jdtls is started by nvim-jdtls (plugins/coding/java.lua), not by mason-lspconfig.
+-- jdtls is started by nvim-jdtls (plugins/lang/java.lua), not by mason-lspconfig.
 
 -- JDKs installed by install.sh, one nix profile per version
 local function jdk(version)

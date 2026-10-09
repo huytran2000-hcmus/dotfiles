@@ -10,44 +10,28 @@ return {
         dependencies = {
             { "nvim-lua/plenary.nvim" },
         },
-        opts = function()
-            local nls = require("null-ls")
-            local builtins = nls.builtins
-            return {
-                -- Must exist in PATH
-                sources = {
-                    -- builtins.formatting.prettier,
-                    -- builtins.formatting.fixjson,
-                    -- builtins.formatting.gofmt,
-                    builtins.formatting.shfmt,
-                    builtins.formatting.goimports,
-                    -- builtins.formatting.goimports_reviser,
-                    -- builtins.hover.dictionary,
-                    builtins.diagnostics.golangci_lint,
-                    -- builtins.diagnostics.codespell,
-                    builtins.completion.spell,
-                    -- builtins.formatting.write_good,
-                },
-                debounce = 250,
-                default_timeout = 5000,
-                -- diagnostics_format = "[#{c}] #{m} (#{s})",
-                -- cmd = { "nvim" },
-                -- fallback_severitty = vim.diagnostic.severity.ERROR,
-                -- notify_format = "[null-ls] %s",
-                -- root_dir = require("null-ls.utils").root_pattern(".null-ls-root", "Makefile", ".git"),
-            }
+        -- Language specs add sources with their own opts function:
+        -- opts = function(_, opts) opts.sources = vim.list_extend(opts.sources or {}, { ... }) end
+        opts = function(_, opts)
+            local builtins = require("null-ls").builtins
+            -- Must exist in PATH
+            opts.sources = vim.list_extend(opts.sources or {}, {
+                -- builtins.formatting.prettier,
+                -- builtins.formatting.fixjson,
+                builtins.formatting.shfmt,
+                -- builtins.hover.dictionary,
+                -- builtins.diagnostics.codespell,
+                builtins.completion.spell,
+                -- builtins.formatting.write_good,
+            })
+            opts.debounce = 250
+            opts.default_timeout = 5000
+            -- opts.diagnostics_format = "[#{c}] #{m} (#{s})"
+            -- opts.root_dir = require("null-ls.utils").root_pattern(".null-ls-root", "Makefile", ".git")
         end,
     },
     {
         "mason-org/mason.nvim",
-        opts = {
-            ensure_installed = {
-                "shfmt",
-                "goimports",
-                "goimports-reviser",
-                "golangci-lint",
-                "codespell",
-            },
-        },
+        opts = { ensure_installed = { "shfmt", "codespell" } },
     },
 }

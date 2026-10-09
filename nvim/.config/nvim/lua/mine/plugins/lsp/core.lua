@@ -17,9 +17,21 @@ return {
                 dependencies = "hrsh7th/cmp-nvim-lsp-signature-help",
             },
         },
+        -- Language specs add servers via { "neovim/nvim-lspconfig", opts = { servers = { ... } } }
+        opts = {
+            ---@type table<string, vim.lsp.Config>
+            servers = {
+                lua_ls = require(PREFIX .. "lspconfig.servers.lua_ls"),
+                jsonls = require(PREFIX .. "lspconfig.servers.jsonls"),
+            },
+            -- Custom server setup; return true to skip vim.lsp.config/enable for that server.
+            -- ["*"] is the fallback for any server.
+            ---@type table<string, fun(server:string, opts:vim.lsp.Config):boolean?>
+            setup = {},
+        },
         config = function(_, opts)
-            local cfg = require(PREFIX .. "lspconfig")
-            local servers = cfg.servers
+            require(PREFIX .. "lspconfig")
+            local servers = opts.servers
 
             local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
             local capabilities = vim.tbl_deep_extend(
@@ -40,7 +52,7 @@ return {
                 }, server_opts)
 
                 local use_mason = vim.tbl_contains(available_servers, server)
-                local setup = cfg.setup[server] or cfg.setup['*']
+                local setup = opts.setup[server] or opts.setup["*"]
                 if setup and setup(server, server_opts) then
                     mason_excludes[#mason_excludes + 1] = server
                 else

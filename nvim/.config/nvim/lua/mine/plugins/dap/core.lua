@@ -22,12 +22,6 @@ return {
         },
         dependencies = {
             {
-                -- https://github.com/leoluz/nvim-dap-go
-                -- Registers the `go` (delve) adapter and configurations; also used by neotest-golang
-                "leoluz/nvim-dap-go",
-                opts = {},
-            },
-            {
                 "rcarriga/nvim-dap-ui",
                 dependencies = {
                     "nvim-neotest/nvim-nio",
@@ -169,9 +163,5 @@ return {
                 desc = "Load .vscode/launch.json for dap.nvim"
             })
         end,
-    },
-    {
-        "mason-org/mason.nvim",
-        opts = { ensure_installed = { "delve" } },
     },
 }

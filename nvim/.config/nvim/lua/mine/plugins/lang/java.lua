@@ -133,7 +133,34 @@ return {
         end,
     },
     {
+        "nvim-treesitter/nvim-treesitter",
+        opts = { ensure_installed = { "java" } },
+    },
+    {
+        "neovim/nvim-lspconfig",
+        opts = {
+            -- Listed so mason-lspconfig installs jdtls; started by nvim-jdtls above
+            servers = { jdtls = {} },
+            setup = {
+                jdtls = function()
+                    return true -- avoid a second jdtls next to nvim-jdtls
+                end,
+            },
+        },
+    },
+    {
         "mason-org/mason.nvim",
         opts = { ensure_installed = { "java-debug-adapter", "java-test" } },
+    },
+    {
+        "nvim-neotest/neotest",
+        dependencies = {
+            {
+                -- https://github.com/rcasia/neotest-java
+                "rcasia/neotest-java",
+                version = "*",
+            },
+        },
+        opts = { adapters = { ["neotest-java"] = {} } },
     },
 }
