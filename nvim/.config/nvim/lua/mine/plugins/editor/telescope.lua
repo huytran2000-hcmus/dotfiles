@@ -62,7 +62,7 @@ local opts = function()
         },
         pickers = {
             find_files = {
-                find_command = { "fd", "-HI", "-E", ".git", "-E", "node_modules" },
+                find_command = { "fd", "-t", "f", "-H", "-E", ".git" },
             },
             live_grep = {
             },
@@ -113,6 +113,16 @@ return {
                     require("telescope.builtin").find_files()
                 end,
                 desc = "Fuzzy find files"
+            },
+            {
+                "<leader>fF",
+                function()
+                    require("telescope.builtin").find_files({
+                        prompt_title = "Find All Files",
+                        find_command = { "fd", "-HI", "-E", ".git", "-E", "node_modules" },
+                    })
+                end,
+                desc = "Fuzzy find all files (including ignored)"
             },
             {
                 "<leader>f%",
