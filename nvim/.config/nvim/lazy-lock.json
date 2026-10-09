@@ -30,6 +30,7 @@
   "miniharp.nvim": { "branch": "main", "commit": "b935ce9b593e58c99aba7ab0978c146acdcce843" },
   "neotest": { "branch": "master", "commit": "27bf921498043f7ecd821d6db68d05de244bbd02" },
   "neotest-golang": { "branch": "main", "commit": "05cd7bf89a146cf1fa2848a9fe277a1e68a3a51d" },
+  "neotest-java": { "branch": "main", "commit": "51a1389b66e0dbdae628c1dab9f1cfd4e9b0c6f6" },
   "nightfly": { "branch": "master", "commit": "ec187ddbee3fd72953c0e829e0a10c53fc4e2faf" },
   "nightfox.nvim": { "branch": "main", "commit": "ba47d4b4c5ec308718641ba7402c143836f35aa9" },
   "none-ls.nvim": { "branch": "main", "commit": "1917c86818b5e058f53c2ea0ad38fc57534d62fc" },

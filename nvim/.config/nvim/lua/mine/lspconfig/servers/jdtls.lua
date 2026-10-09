@@ -31,6 +31,9 @@ return {
                 enabled = true,
             },
             implementationCodeLens = "all",
+            format = {
+                enabled = true,
+            },
             inlayHints = {
                 parameterNames = {
                     enabled = "all",

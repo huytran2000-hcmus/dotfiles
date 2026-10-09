@@ -11,8 +11,12 @@ return {
                 "fredrikaverpil/neotest-golang",
                 version = "*",
             },
+            {
+                -- https://github.com/rcasia/neotest-java
+                "rcasia/neotest-java",
+                version = "*",
+            },
         },
-        -- Java test keymaps are buffer-local (jdtls) in plugins/coding/java.lua and override these
         keys = {
             { "<leader>tt", function() require("neotest").run.run(vim.fn.expand("%")) end,                      desc = "Run file" },
             { "<leader>tT", function() require("neotest").run.run(vim.uv.cwd()) end,                           desc = "Run all test files" },
@@ -31,9 +35,17 @@ return {
             require("neotest").setup({
                 adapters = {
                     require("neotest-golang")({}),
+                    require("neotest-java")({}),
                 },
                 status = { virtual_text = true },
                 output = { open_on_run = true },
+            })
+
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "neotest-output", "neotest-output-panel" },
+                callback = function(args)
+                    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = args.buf, silent = true, desc = "Close neotest output" })
+                end,
             })
         end,
     },
