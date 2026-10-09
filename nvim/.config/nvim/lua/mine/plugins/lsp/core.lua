@@ -28,10 +28,10 @@ return {
                 has_cmp and cmp_nvim_lsp.default_capabilities() or {}
             )
 
-            require("mason").setup()
             local have_mason, mlsp = pcall(require, "mason-lspconfig")
-            local available_servers = have_mason and
-                vim.tbl_keys(require("mason-lspconfig").get_mappings().lspconfig_to_package)
+            local available_servers = have_mason
+                and vim.tbl_keys(mlsp.get_mappings().lspconfig_to_package)
+                or {}
             local mason_excludes = {}
             local configure = function(server)
                 local server_opts = servers[server] or {}
@@ -41,7 +41,7 @@ return {
 
                 local use_mason = vim.tbl_contains(available_servers, server)
                 local setup = cfg.setup[server] or cfg.setup['*']
-                if setup and cfg.setup[server](server, server_opts) then
+                if setup and setup(server, server_opts) then
                     mason_excludes[#mason_excludes + 1] = server
                 else
                     vim.lsp.config(server, server_opts)
@@ -73,17 +73,13 @@ return {
     },
     {
         "mason-org/mason.nvim",
+        cmd = "Mason",
+        keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+        build = ":MasonUpdate",
+        -- Other specs add tools via { "mason-org/mason.nvim", opts = { ensure_installed = { ... } } }
+        opts_extend = { "ensure_installed" },
         opts = {
-            ensure_installed = {
-                "shfmt",
-                "goimports",
-                "goimports-reviser",
-                "golangci-lint",
-                "codespell",
-                "delve",
-                "java-debug-adapter",
-                "java-test",
-            }
+            ensure_installed = {},
         },
         ---@param opts MasonSettings | {ensure_installed: string[]}
         config = function(_, opts)
