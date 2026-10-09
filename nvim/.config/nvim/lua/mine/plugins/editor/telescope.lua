@@ -130,6 +130,18 @@ return {
                 desc = "Fuzzy find current buffer"
             },
             {
+                "<leader>fs",
+                function()
+                    require("telescope.builtin").lsp_document_symbols({
+                        symbols = {
+                            "class", "constructor", "enum", "function", "interface", "module", "method",
+                            "namespace", "package", "property", "struct", "variable", "constant", "object",
+                        },
+                    })
+                end,
+                desc = "Fuzzy find buffer symbols"
+            },
+            {
                 "<leader>fe",
                 function() require("telescope.builtin").live_grep() end,
                 desc = "Fuzzy live grep"

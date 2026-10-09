@@ -57,7 +57,6 @@ return {
             "quickfix",
             "man",
             -- "gitsigns",
-            "aerial",
             -- "fugitive",
             -- "fzf",
             -- "mundo",

@@ -50,7 +50,6 @@ return {
             which_key = true,
             lsp_trouble = true,
             navic = true,
-            aerial = true,
             fidget = true,
             mason = true,
             treesitter = true,
