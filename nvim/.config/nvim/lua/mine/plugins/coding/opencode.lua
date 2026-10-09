@@ -1,7 +1,33 @@
+local term
+
+local function toggle_terminal()
+    if not term then
+        local Terminal = require("toggleterm.terminal").Terminal
+        term = Terminal:new({
+            cmd = "opencode",
+            direction = "tab",
+            count = 9,
+            on_open = function(t)
+                -- <Esc> and <C-[> are the same key. The global toggleterm mapping would swallow it,
+                -- so send it through to opencode (interrupts a running prompt).
+                vim.keymap.set("t", "<C-[>", "<C-[>", { buffer = t.bufnr, desc = "Send <Esc> to opencode" })
+                vim.keymap.set("t", "<C-q>", [[<C-\><C-n>]], { buffer = t.bufnr, desc = "Leave terminal mode" })
+            end,
+        })
+    end
+    term:toggle()
+end
+
 return {
     {
         "nickjvandyke/opencode.nvim",
+        dependencies = { "akinsho/toggleterm.nvim" },
         keys = {
+            {
+                "<leader>ao",
+                toggle_terminal,
+                desc = "Toggle opencode terminal",
+            },
             {
                 "<leader>aa",
                 function()
