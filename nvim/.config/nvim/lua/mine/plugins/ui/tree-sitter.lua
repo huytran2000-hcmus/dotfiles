@@ -15,6 +15,7 @@ local parsers = {
     "gowork",
     "gosum",
     "java",
+    "dap_repl", -- registered by nvim-dap-repl-highlights.setup() below
 }
 
 return {
@@ -22,12 +23,15 @@ return {
     branch = "main",
     lazy = false, -- main branch does not support lazy-loading
     build = ":TSUpdate",
+    dependencies = { "LiadOz/nvim-dap-repl-highlights" },
     init = function()
         vim.o.foldmethod = 'expr'
         vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
         vim.o.foldenable = false
     end,
     config = function()
+        -- Must run before install() so the dap_repl parser is known to nvim-treesitter
+        require("nvim-dap-repl-highlights").setup()
         require("nvim-treesitter").install(parsers)
 
         vim.api.nvim_create_autocmd("FileType", {

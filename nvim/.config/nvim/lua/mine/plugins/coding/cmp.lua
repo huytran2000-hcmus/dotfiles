@@ -21,6 +21,7 @@ return {
         "saadparwaiz1/cmp_luasnip",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-nvim-lsp-signature-help",
+        "rcarriga/cmp-dap",
         {
             "L3MON4D3/LuaSnip",
             -- tag = "v<CurrentMajor>.*",
@@ -42,6 +43,10 @@ return {
     opts = function()
         local cmp = require("cmp")
         return {
+            -- cmp is off in prompt buffers (the dap REPL) unless the buffer is a dap one
+            enabled = function()
+                return vim.bo.buftype ~= "prompt" or require("cmp_dap").is_dap_buffer()
+            end,
             completion = {
                 completeopt = "menuone,preview,noselect,noinsert,longest"
             },
@@ -189,6 +194,11 @@ return {
             }
         })
         cmp.setup(opts)
+        cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+            sources = {
+                { name = "dap" },
+            },
+        })
         cmp.setup.cmdline({ '/', '?' }, {
             mapping = cmd_mappings,
             sources = {

@@ -32,35 +32,21 @@ return {
                 dependencies = {
                     "nvim-neotest/nvim-nio",
                     {
-                        "rcarriga/cmp-dap",
-                        config = function()
-                            require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
-                                sources = {
-                                    { name = "dap" },
-                                },
-                            })
-                        end
-                    },
-                    {
                         "mason.nvim",
-                    },
-                    {
-                        "LiadOz/nvim-dap-repl-highlights",
                     },
                 },
                 opts = {
                     controls = {
-                        element = "console"
+                        element = "repl"
                     },
                     expand_lines = true,
                     force_buffers = true,
                     layouts = {
                         {
                             elements = {
-                                -- { id = "console", size = 0.5 },
                                 { id = "repl", size = 1 },
                             },
-                            size = 10,
+                            size = 15,
                             position = "bottom"
                         },
                         {
@@ -136,6 +122,8 @@ return {
             require('persistent-breakpoints').setup()
             require('persistent-breakpoints.api').load_breakpoints()
 
+            require(PREFIX .. "dapconfig.repl_log").setup()
+
             -- dap-ui configuration
             local dapui = require("dapui")
             dap.listeners.after.event_initialized.dapui_config = function()
@@ -144,11 +132,27 @@ return {
             dap.listeners.before.launch.dapui_config = function()
                 dapui.open()
             end
-            dap.listeners.before.event_terminated.dapui_config = function()
-                dapui.close()
+
+            -- Send program output to the REPL for every language (delve and java-debug
+            -- otherwise use a terminal or drop it). Explicit launch.json values win.
+            dap.listeners.on_config["mine.output"] = function(config)
+                if config.type == "go" and config.outputMode == nil then
+                    return vim.tbl_extend("force", config, { outputMode = "remote" })
+                end
+                if config.type == "java" and config.request == "launch" and config.console == nil then
+                    return vim.tbl_extend("force", config, { console = "internalConsole" })
+                end
+                return config
             end
-            dap.listeners.before.event_exited.dapui_config = function()
-                dapui.close()
+
+            -- Tell in the REPL when the debuggee exits and the session closes, since the UI stays open
+            dap.listeners.after.event_exited["mine.repl_end"] = function(_, body)
+                require("dap.repl").append(("[dap] Process exited with code %s"):format(body.exitCode))
+            end
+            dap.listeners.after.event_initialized["mine.repl_end"] = function(session)
+                session.on_close["mine.repl_end"] = function()
+                    require("dap.repl").append("[dap] Debug session ended")
+                end
             end
 
             CMD("LoadLaunchJSON", function(opts)
