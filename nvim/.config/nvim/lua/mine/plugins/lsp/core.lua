@@ -86,7 +86,6 @@ return {
     {
         "mason-org/mason.nvim",
         cmd = "Mason",
-        keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
         build = ":MasonUpdate",
         -- Other specs add tools via { "mason-org/mason.nvim", opts = { ensure_installed = { ... } } }
         opts_extend = { "ensure_installed" },

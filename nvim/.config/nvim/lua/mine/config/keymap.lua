@@ -52,6 +52,10 @@ NNOREMAP("<leader>cd", ":let @+ = expand('%:p:h')<CR>", {
     silent = true,
 })
 
+-- Comment
+NNOREMAP("gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add comment below" })
+NNOREMAP("gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add comment above" })
+
 NNOREMAP("<leader>bo", ":%bd|e#|bd#<CR>", {
     desc = "Delete all buffer except the current one",
     silent = true,
