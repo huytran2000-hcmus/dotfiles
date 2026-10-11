@@ -49,7 +49,6 @@ return {
             telescope = true,
             which_key = true,
             lsp_trouble = true,
-            navic = true,
             fidget = true,
             mason = true,
             treesitter = true,

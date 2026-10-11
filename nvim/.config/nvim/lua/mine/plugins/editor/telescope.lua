@@ -1,5 +1,8 @@
 local opts = function()
     local actions = require("telescope.actions")
+    local open_with_trouble = function(...)
+        return require("trouble.sources.telescope").open(...)
+    end
     return {
         defaults = {
             prompt_prefix = " ",
@@ -34,6 +37,7 @@ local opts = function()
                     ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_previous,
                     ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
                     ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+                    ["<M-t>"] = open_with_trouble,
                     ["<C-x>"] = actions.select_horizontal,
                     ["<C-v>"] = actions.select_vertical,
                     ["<C-t>"] = actions.select_tab,
@@ -54,6 +58,7 @@ local opts = function()
                     ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_previous,
                     ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
                     ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+                    ["<M-t>"] = open_with_trouble,
                     ["<C-x>"] = actions.select_horizontal,
                     ["<C-v>"] = actions.select_vertical,
                     ["<C-t>"] = actions.select_tab,

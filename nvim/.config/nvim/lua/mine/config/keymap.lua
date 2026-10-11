@@ -36,8 +36,6 @@ NNOREMAP("<C-d>", "<C-d>zz", { desc = "Center screen scroll down" })
 NNOREMAP("<C-u>", "<C-u>zz", { desc = "Center screen scroll up" })
 
 -- Quickfix
-NNOREMAP("]q", ":cnext<CR>", { desc = "Move to next qf entry" })
-NNOREMAP("[q", ":cprev<CR>", { desc = "Move to previous qf entry" })
 NNOREMAP("<leader>qd", ":cclo<CR>", { desc = "Close quickfix list" })
 
 -- Miscellaneous

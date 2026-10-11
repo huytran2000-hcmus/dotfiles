@@ -25,11 +25,11 @@ return {
         plugins = {
             "dap",
             "nvim-cmp",
-            "nvim-navic",
             "nvim-tree",
             "telescope",
             "which-key",
             "nvim-web-devicons",
+            "trouble",
             -- "gitsigns",
             -- "dashboard",
             -- "hop",
@@ -39,7 +39,6 @@ return {
             -- "neogit",
             -- "neorg",
             -- "sneak",
-            -- "trouble",
         },
         -- disable = {
         --     colored_cursor = false, -- Disable the colored cursor

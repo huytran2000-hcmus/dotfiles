@@ -26,6 +26,7 @@ return {
             { "<leader>t",  group = "test" },
             { "<leader>u",  group = "ui toggle" },
             { "<leader>w",  group = "window" },
+            { "<leader>x",  group = "diagnostics/quickfix" },
             { "[",          group = "prev" },
             { "]",          group = "next" },
             { "g",          group = "go" },
