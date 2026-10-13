@@ -109,6 +109,7 @@ return {
             require("telescope").setup(opts)
             require('telescope').load_extension('fzf')
             require("telescope").load_extension("miniharp")
+            require("telescope").load_extension("worktree")
             -- require('telescope').load_extension('ui-select')
         end,
         keys = {
@@ -200,6 +201,16 @@ return {
                 "<leader>fgh",
                 function() require("telescope.builtin").git_bcommits() end,
                 desc = "Fuzzy find git commits of current buffer"
+            },
+            {
+                "<leader>fgw",
+                function() require("telescope").extensions.worktree.worktrees() end,
+                desc = "Switch git worktree"
+            },
+            {
+                "<leader>fgW",
+                function() require("telescope").extensions.worktree.create() end,
+                desc = "Create git worktree"
             }
         },
 
