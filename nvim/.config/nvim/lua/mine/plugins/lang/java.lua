@@ -161,6 +161,13 @@ return {
                 version = "*",
             },
         },
-        opts = { adapters = { ["neotest-java"] = {} } },
+        opts = {
+            adapters = {
+                ["neotest-java"] = {
+                    -- JUnit 6 console jar needs Java 17+; 1.10.1 also runs Java 8/11 projects
+                    junit_jar = vim.fn.stdpath("data") .. "/neotest-java/junit-platform-console-standalone-1.10.1.jar",
+                },
+            },
+        },
     },
 }
