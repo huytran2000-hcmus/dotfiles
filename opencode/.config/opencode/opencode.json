@@ -8,8 +8,7 @@
     ],
     "plugins": [
         "@ex-machina/opencode-anthropic-auth@next",
-        "@tarquinen/opencode-dcp@latest",
-        "oh-my-opencode-slim"
+        "@tarquinen/opencode-dcp@latest"
     ],
     "permissions": [
         {

@@ -8,9 +8,6 @@
     "session.child.previous": "shift+left",
     "session.tab.close": "<leader>w,alt+w"
   },
-  "plugins": [
-    "oh-my-opencode-slim"
-  ],
   "diffs": {
     "wrap": "word"
   },
