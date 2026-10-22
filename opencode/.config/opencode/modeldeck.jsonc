@@ -1,0 +1,22 @@
+{
+  "$schema": "https://unpkg.com/opencode-modeldeck/schema.json",
+  "activeProfile": "grok-claude",
+  "profiles": {
+    "grok-claude": {
+      "agents": {
+        "atlas": { "model": "anthropic/claude-opus-5-5", "variant": "medium" },
+        "mimir": { "model": "anthropic/claude-sonnet-5-5", "variant": "medium" },
+        "minion": { "model": "xai/grok-4.7", "variant": "medium" },
+        "oracle": { "model": "anthropic/claude-opus-5-5", "variant": "high" },
+        "murph": { "model": "xai/grok-4.7", "variant": "high" },
+        "heimdall": { "model": "xai/grok-4.7", "variant": "high" },
+        "cooper": { "model": "xai/grok-4.7", "variant": "high" },
+        "rover": { "model": "xai/grok-4.7", "variant": "medium" },
+        "wanderer": { "model": "xai/grok-4.7", "variant": "medium" },
+        "log-pattern-finder": { "model": "xai/grok-4.7", "variant": "medium" },
+        "epic-finder": { "model": "xai/grok-4.7", "variant": "low" },
+        "svc-discover": { "model": "xai/grok-4.7", "variant": "low" }
+      }
+    }
+  }
+}
