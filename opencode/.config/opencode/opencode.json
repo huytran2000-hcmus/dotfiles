@@ -10,7 +10,8 @@
         "@ex-machina/opencode-anthropic-auth@next",
         "@tarquinen/opencode-dcp@latest",
         "opencode-modeldeck@latest",
-        "oh-my-opencode-slim@latest"
+        "oh-my-opencode-slim@latest",
+        "opencode-antigravity-auth@latest"
     ],
     "permissions": [
         {
