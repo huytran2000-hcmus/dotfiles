@@ -34,8 +34,8 @@ Personal dotfiles, deployed with GNU Stow. There is no build, test, or CI; chang
 ## OpenCode (`opencode/.config/opencode`)
 
 - Stowed with `--no-folding`, so `~/.config/opencode` stays a real directory and only the tracked files are symlinked into it. Re-stow with `stow -R --no-folding -d ~/.dotfiles -t ~ opencode` after adding a file.
-- Tracked: `opencode.json`, `cli.json`, `dcp.jsonc`, `modeldeck.jsonc`, and `AGENTS.md`. The global `AGENTS.md` is the only source for general agent rules (style, testing, questions); don't duplicate them into `rules/`.
-- Work-specific or secret files stay as untracked files in `~/.config/opencode` and must not be added here: `oh-my-opencode-slim.json`, `agent/*` (symlinks into a work repo), `commands/`, `rules/mcporter-discovery.md`, `service.json` (contains a password), `skills/`, `logs/`, and `*.bak`. `opencode.json` loads `rules/mcporter-discovery.md` from its local path via `instructions`.
+- Tracked: `opencode.json`, `cli.json`, `dcp.jsonc`, `modeldeck.jsonc`, `oh-my-opencode-slim.json`, and `AGENTS.md`. The global `AGENTS.md` is the only source for general agent rules (style, testing, questions); don't duplicate them into `rules/`.
+- Work-specific or secret files stay as untracked files in `~/.config/opencode` and must not be added here: `agent/*` (symlinks into a work repo), `commands/`, `rules/mcporter-discovery.md`, `service.json` (contains a password), `skills/`, `logs/`, and `*.bak`. `opencode.json` loads `rules/mcporter-discovery.md` from its local path via `instructions`.
 - OpenChamber config (`~/.config/openchamber`) is not managed here; its `settings.json` holds keys.
 
 ## No credentials in the repo
