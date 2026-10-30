@@ -5,6 +5,8 @@
     "worktrees"
   ],
   "disabled_agents": [],
+  // Note for future agents: For opencode models, always use free models (opencode/*-free)
+  // matched to role rank. Do not use opencode-go/* models without an active subscription.
   "presets": {
     "supreme": {
       "orchestrator": {
@@ -27,7 +29,7 @@
       },
       "fixer": {
         "model": "xai/grok-4.7",
-        "variant": "high"
+        "variant": "medium"
       },
       "observer": {
         "model": "google/antigravity-gemini-3.8-flash-low"
@@ -39,7 +41,7 @@
         "variant": "high"
       },
       "oracle": {
-        "model": "anthropic/claude-opus-5",
+        "model": "anthropic/claude-opus-5-5",
         "variant": "medium"
       },
       "explorer": {
@@ -52,9 +54,8 @@
         ]
       },
       "designer": {
-        "model": "opencode/mimo-v2.5-free",
+        "model": "opencode/mimo-v2.6-flash-free",
         "temperature": 0.3,
-        "variant": "medium",
         "skills": [],
         "mcps": []
       },
@@ -63,16 +64,14 @@
         "variant": "medium"
       },
       "observer": {
-        "model": "opencode/mimo-v2.5-free",
-        "temperature": 0.2,
-        "variant": "low",
+        "model": "opencode/nemotron-3.5-super-vl-free",
         "skills": [],
         "mcps": []
       }
     },
     "grok+zen": {
       "orchestrator": {
-        "model": "opencode/muse-spark-1.3-contributor-free",
+        "model": "opencode/deepseek-v4.1-flash-free",
         "variant": "high"
       },
       "oracle": {
@@ -89,9 +88,8 @@
         ]
       },
       "designer": {
-        "model": "opencode/mimo-v2.5-free",
+        "model": "opencode/mimo-v2.6-flash-free",
         "temperature": 0.3,
-        "variant": "medium",
         "skills": [],
         "mcps": []
       },
@@ -100,9 +98,7 @@
         "variant": "medium"
       },
       "observer": {
-        "model": "opencode/mimo-v2.5-free",
-        "temperature": 0.2,
-        "variant": "low",
+        "model": "opencode/nemotron-3.5-super-vl-free",
         "skills": [],
         "mcps": []
       }
@@ -138,7 +134,7 @@
     },
     "openai": {
       "orchestrator": {
-        "model": "openai/gpt-5.6-terra",
+        "model": "openai/gpt-6.1-terra",
         "variant": "high",
         "skills": [
           "*"
@@ -149,7 +145,7 @@
         ]
       },
       "oracle": {
-        "model": "openai/gpt-5.6-sol",
+        "model": "openai/gpt-6.1-sol",
         "variant": "high",
         "skills": [
           "simplify"
@@ -157,7 +153,7 @@
         "mcps": []
       },
       "explorer": {
-        "model": "openai/gpt-5.6-luna",
+        "model": "openai/gpt-6-luna",
         "variant": "low",
         "skills": [],
         "mcps": [
@@ -166,22 +162,22 @@
         ]
       },
       "designer": {
-        "model": "openai/gpt-5.6-luna",
+        "model": "openai/gpt-6-luna",
         "variant": "medium",
         "skills": [],
         "mcps": []
       },
       "fixer": {
-        "model": "openai/gpt-5.6-luna",
+        "model": "openai/gpt-6-luna",
         "variant": "high",
         "skills": [],
         "mcps": []
       }
     },
-    "opencode-go": {
+    "opencode-free": {
       "orchestrator": {
-        "model": "opencode-go/minimax-m3",
-        "variant": "thinking",
+        "model": "opencode/deepseek-v4.1-flash-free",
+        "variant": "high",
         "skills": [
           "*"
         ],
@@ -191,7 +187,7 @@
         ]
       },
       "oracle": {
-        "model": "opencode-go/qwen3.7-max",
+        "model": "opencode/deepseek-v4.1-flash-free",
         "variant": "max",
         "skills": [
           "simplify"
@@ -199,8 +195,7 @@
         "mcps": []
       },
       "explorer": {
-        "model": "opencode-go/deepseek-v4-flash",
-        "variant": "high",
+        "model": "opencode/nemotron-3.5-lightning-free",
         "skills": [],
         "mcps": [
           "context7",
@@ -208,18 +203,18 @@
         ]
       },
       "designer": {
-        "model": "opencode-go/kimi-k2.7-code",
+        "model": "opencode/mimo-v2.6-flash-free",
         "skills": [],
         "mcps": []
       },
       "fixer": {
-        "model": "opencode-go/deepseek-v4-flash",
+        "model": "opencode/glm-5.3-flash-free",
         "variant": "high",
         "skills": [],
         "mcps": []
       },
       "observer": {
-        "model": "opencode-go/mimo-v2.5",
+        "model": "opencode/nemotron-3.5-super-vl-free",
         "skills": [],
         "mcps": []
       }
