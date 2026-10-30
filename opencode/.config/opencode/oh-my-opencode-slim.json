@@ -35,6 +35,33 @@
         "model": "google/antigravity-gemini-3.8-flash-low"
       }
     },
+    "claude+gemini": {
+      "orchestrator": {
+        "model": "anthropic/claude-opus-5-5",
+        "variant": "medium"
+      },
+      "oracle": {
+        "model": "anthropic/claude-opus-5-5",
+        "variant": "high"
+      },
+      "explorer": {
+        "model": "google/antigravity-gemini-3.8-flash-medium",
+        "mcps": [
+          "context7",
+          "gh_grep"
+        ]
+      },
+      "designer": {
+        "model": "google/antigravity-gemini-3.8-flash-high"
+      },
+      "fixer": {
+        "model": "anthropic/claude-sonnet-5-5",
+        "variant": "medium"
+      },
+      "observer": {
+        "model": "google/antigravity-gemini-3.8-flash-low"
+      }
+    },
     "claude+grok+zen": {
       "orchestrator": {
         "model": "xai/grok-4.7",
